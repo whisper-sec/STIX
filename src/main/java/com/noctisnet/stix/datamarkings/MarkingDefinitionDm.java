@@ -8,9 +8,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.noctisnet.stix.common.StixCommonProperties;
 import com.noctisnet.stix.common.StixCustomProperties;
-import com.noctisnet.stix.datamarkings.objects.Statement;
 import com.noctisnet.stix.datamarkings.objects.StatementMarkingObject;
-import com.noctisnet.stix.datamarkings.objects.Tlp;
 import com.noctisnet.stix.datamarkings.objects.TlpMarkingObject;
 import com.noctisnet.stix.redaction.Redactable;
 import com.noctisnet.stix.validation.constraints.defaulttypevalue.DefaultTypeValue;
@@ -22,18 +20,14 @@ import org.immutables.value.Value;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-/**
- * <p>Builder Required Fields:</p>
- * <ol>
- *     <li>{@link MarkingDefinition#getDefinitionType()} - (A helper is in-place for this field that will pre-populate the value based on the specific Marking Object, which makes this field essentially optional).</li>
- *     <li>{@link MarkingDefinition#getDefinition()}  - the Marking Object.  Two objects are currently supported: {@link Tlp} and {@link Statement}.</li>
- * </ol>
- */
-@Value.Immutable @Serial.Version(1L)
+
+@Value.Immutable
+@Serial.Version(1L)
 @JsonTypeName("marking-definition")
 @DefaultTypeValue(value = "marking-definition", groups = {DefaultValuesProcessor.class})
-@Value.Style(typeAbstract="*Dm", typeImmutable="*", validationMethod = Value.Style.ValidationMethod.NONE, additionalJsonAnnotations = {JsonTypeName.class}, depluralize = true)
-@JsonSerialize(as = MarkingDefinition.class) @JsonDeserialize(builder = MarkingDefinition.Builder.class)
+@Value.Style(typeAbstract = "*Dm", typeImmutable = "*", validationMethod = Value.Style.ValidationMethod.NONE, additionalJsonAnnotations = {JsonTypeName.class}, depluralize = true)
+@JsonSerialize(as = MarkingDefinition.class)
+@JsonDeserialize(builder = MarkingDefinition.Builder.class)
 @JsonPropertyOrder({"type", "id", "created_by_ref", "created",
         "external_references", "object_marking_refs", "granular_markings", "definition_type",
         "definition"})
@@ -52,3 +46,4 @@ public interface MarkingDefinitionDm extends StixCommonProperties, StixCustomPro
     StixMarkingObject getDefinition();
 
 }
+

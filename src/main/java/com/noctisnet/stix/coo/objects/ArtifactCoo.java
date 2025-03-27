@@ -19,12 +19,7 @@ import java.util.Optional;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 
-/**
- * artifact
- * <p>
- * The Artifact Object permits capturing an array of bytes (8-bits), as a base64-encoded string string, or linking to a file-like payload.
- * 
- */
+
 @Value.Immutable @Serial.Version(1L)
 @DefaultTypeValue(value = "artifact", groups = {DefaultValuesProcessor.class})
 @Value.Style(typeAbstract="*Coo", typeImmutable="*", validationMethod = Value.Style.ValidationMethod.NONE, additionalJsonAnnotations = {JsonTypeName.class}, depluralize = true, depluralizeDictionary = {"hash:hashes"})
@@ -36,10 +31,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @BusinessRule(ifExp = "getPayloadBin().isPresent() == true", thenExp = "getUrl().isPresent() == false && getHashes().isEmpty() == true", errorMessage = "When payload_bin is used, Url and hashes cannot be used.")
 public interface ArtifactCoo extends CyberObservableObject {
 
-    /**
-    * The value of this property MUST be a valid MIME type as specified in the IANA Media Types registry.
-    *
-    */
+
     @JsonProperty("mime_type")
     @JsonPropertyDescription("The value of this property MUST be a valid MIME type as specified in the IANA Media Types registry.")
     Optional<@Pattern(regexp = "^(application|audio|font|image|message|model|multipart|text|video)/[a-zA-Z0-9.+_-]+")
@@ -51,12 +43,7 @@ public interface ArtifactCoo extends CyberObservableObject {
         //@Pattern(regexp = "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$")
     Optional<String> getPayloadBin();
 
-    /**
-     * url-regex
-     * <p>
-     * Matches the elements of a URL using a regular expression. Uses Diego Perini's regex from https://gist.github.com/dperini/729294.
-     * 
-     */
+
     @JsonProperty("url")
     @JsonPropertyDescription("The value of this property MUST be a valid URL that resolves to the unencoded content.")
     //@TODO review if the @Url constraint can be used instead.
