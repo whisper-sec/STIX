@@ -5,7 +5,7 @@
     <url>https://noctisnet.com</url>
     <groupId>com.noctisnet</groupId>
     <artifactId>stix2.1</artifactId>
-    <version>v0.2.0</version>
+    <version>v0.1.0</version>
     <packaging>jar</packaging>
 
     <name>Noctis STIX 2.1</name>

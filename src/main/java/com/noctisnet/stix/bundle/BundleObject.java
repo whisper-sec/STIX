@@ -62,9 +62,7 @@ public interface BundleObject extends GenericValidation, Serializable, StixCusto
     @Size(min = 1, message = "Must have at least 1 object in bundle")
     @JsonProperty(value = "objects", access = JsonProperty.Access.WRITE_ONLY)
     @JsonPropertyDescription("Specifies a set of one or more STIX Objects.")
-    default Set<BundleableObject> getObjects() {
-        return null;
-    }
+    Set<BundleableObject> getObjects();
 
     @JsonIgnore
     @Value.Lazy
