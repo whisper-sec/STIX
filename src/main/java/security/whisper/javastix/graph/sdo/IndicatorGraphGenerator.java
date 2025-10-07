@@ -99,7 +99,7 @@ public class IndicatorGraphGenerator implements GraphGenerator {
         // Extract pattern observable types if our pattern parser is available
         try {
             security.whisper.javastix.pattern.StixPattern pattern =
-                security.whisper.javastix.pattern.StixPatternParser.parse(indicator.getPattern());
+                security.whisper.javastix.pattern.StixPatternSimpleParser.parse(indicator.getPattern());
             if (pattern.isValid() && !pattern.getObservableTypes().isEmpty()) {
                 node.getData().getAdditionalProperties().put("observable_types",
                     pattern.getObservableTypes());

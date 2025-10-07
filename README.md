@@ -3,7 +3,7 @@
 [![License: BSD-2-Clause](https://img.shields.io/badge/License-BSD%202--Clause-blue.svg)](LICENSE)
 [![Java: 8+](https://img.shields.io/badge/Java-8%2B-orange.svg)](https://www.oracle.com/java/)
 [![STIX: 2.1](https://img.shields.io/badge/STIX-2.1-green.svg)](https://oasis-open.github.io/cti-documentation/)
-[![Maven: 1.0.0](https://img.shields.io/badge/Maven-1.0.0-red.svg)](https://search.maven.org/artifact/security.whisper/stix2.1)
+[![Maven: 1.3.0](https://img.shields.io/badge/Maven-1.3.0-red.svg)](https://search.maven.org/artifact/security.whisper/stix2.1)
 
 A professional Java implementation of the [STIX 2.1](https://oasis-open.github.io/cti-documentation/stix/intro.html) specification for cyber threat intelligence sharing, designed for both software developers and cybersecurity professionals.
 
@@ -12,11 +12,13 @@ Maintained by [Whisper Security](https://whisper.security)
 ## 🚀 Features
 
 - **Complete STIX 2.1 Implementation**: Full support for all STIX Domain Objects (SDO), Relationship Objects (SRO), and Cyber Observable Objects (SCO)
+- **Advanced Graph Analysis** (v1.3.0): JGraphT-powered graph traversal, centrality analysis, and threat intelligence analytics
+- **Pattern Support** (v1.2.0): Full ANTLR4-based STIX pattern parser with evaluation capabilities
 - **Type-Safe Builder Pattern**: Intuitive, fluent API for creating STIX objects
 - **Automatic Validation**: Built-in validation against STIX 2.1 specification
 - **Immutable Objects**: Thread-safe, immutable objects for reliable concurrent processing
-- **Comprehensive Documentation**: Professional documentation for developers and security analysts
-- **Production Ready**: Thoroughly tested with 100% passing test suite
+- **Enhanced Logging**: SLF4J integration for comprehensive debugging and monitoring
+- **Production Ready**: Thoroughly tested with extensive test coverage
 
 ## 📚 Documentation
 
@@ -36,14 +38,14 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory:
 <dependency>
     <groupId>security.whisper</groupId>
     <artifactId>stix2.1</artifactId>
-    <version>1.0.0</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```gradle
-implementation 'security.whisper:stix2.1:1.0.0'
+implementation 'security.whisper:stix2.1:1.3.0'
 ```
 
 ### Your First STIX Object
@@ -224,16 +226,17 @@ This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICE
 
 ## 📊 Project Status
 
-- **Current Version**: 1.0.0 (Stable)
+- **Current Version**: 1.3.0 (Stable)
 - **STIX Version**: 2.1
 - **Java Compatibility**: 8, 11, 17, 21
-- **Build Status**: ✅ All tests passing
+- **Build Status**: ✅ Passing
 - **Documentation**: ✅ Complete
 
 ## 🚦 Roadmap
 
 - [ ] TAXII 2.1 client implementation
-- [ ] STIX pattern validator and executor
+- [x] STIX pattern parser and validator (v1.2.0)
+- [x] Graph analysis and traversal (v1.3.0)
 - [ ] GraphQL API for STIX objects
 - [ ] Kotlin DSL support
 - [ ] Spring Boot starter module
@@ -250,11 +253,18 @@ This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICE
 
 See [CHANGELOG.md](CHANGELOG.md) for a detailed version history.
 
-### Latest Release: v1.0.0
-- First stable release
-- Complete STIX 2.1 support
-- Professional documentation
-- BSD 2-Clause License
+### Latest Release: v1.3.0
+- Advanced graph analysis with JGraphT integration
+- Graph traversal algorithms (Dijkstra, BFS, DFS)
+- Centrality analysis (degree, betweenness, closeness)
+- Threat intelligence analytics
+- Enhanced helper utilities for bundles, relationships, and patterns
+- Comprehensive SLF4J logging integration
+
+### Previous Releases
+- **v1.2.0**: ANTLR4-based STIX pattern parser and evaluator
+- **v1.1.0**: Enhanced validation and vocabulary support
+- **v1.0.0**: First stable release with complete STIX 2.1 support
 
 ---
 

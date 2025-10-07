@@ -10,8 +10,11 @@ import java.util.regex.Pattern;
  * Parser for STIX pattern strings.
  * This is a simplified parser that handles basic STIX pattern syntax.
  * Full ANTLR-based parsing would be required for complete STIX pattern support.
+ *
+ * @deprecated Use {@link StixPatternCompiler} for full ANTLR4-based parsing instead.
  */
-public class StixPatternParser {
+@Deprecated
+public class StixPatternSimpleParser {
 
     // Basic pattern regexes
     private static final Pattern OBSERVATION_PATTERN =

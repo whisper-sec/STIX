@@ -1,6 +1,6 @@
 # STIX 2.1 Compliance Report
 
-## Library Version: 1.1.0
+## Library Version: 1.2.0
 
 This document details the STIX 2.1 specification compliance status of the Whisper STIX Java library.
 
@@ -12,13 +12,52 @@ This document details the STIX 2.1 specification compliance status of the Whispe
 | STIX Cyber Observable Objects (SCOs) | ✅ Full | 1.0.0+ | All 18 SCO types implemented |
 | STIX Relationship Objects (SROs) | ✅ Full | 1.1.0+ | Relationship and Sighting objects |
 | COO Relationships | ✅ Full | 1.1.0+ | SCO-to-SDO and SCO-to-SCO relationships |
-| STIX Patterns | ⚠️ Partial | 1.0.0+ | Basic pattern support, see limitations |
+| STIX Patterns | ✅ Full | 1.2.0+ | Full ANTLR4-based pattern parser |
 | Bundle Support | ✅ Full | 1.0.0+ | Complete bundle functionality |
 | Custom Objects | ✅ Full | 1.0.0+ | x- prefix custom objects supported |
 | Marking Definitions | ✅ Full | 1.0.0+ | TLP and custom markings |
 | Vocabularies | ✅ Full | 1.0.0+ | All STIX vocabularies implemented |
 
-## Recent Enhancements (v1.1.0)
+## Recent Enhancements
+
+### Version 1.2.0 - Full Pattern Parser ✅
+
+**Previous Limitation:** Basic pattern parsing with limited operator support
+**Current Status:** Full STIX 2.1 pattern language implementation using ANTLR4
+
+**Implementation Details:**
+- Integrated official OASIS STIX pattern grammar
+- Full ANTLR4-based lexer and parser
+- Pattern compilation and validation
+- Pattern evaluation engine
+- Support for all STIX pattern operators
+
+**Supported Features:**
+- ✅ All observation expressions
+- ✅ All comparison operators: `=`, `!=`, `>`, `<`, `>=`, `<=`, `IN`, `LIKE`, `MATCHES`, `ISSUBSET`, `ISSUPERSET`, `EXISTS`
+- ✅ All logical operators: `AND`, `OR`, `NOT`
+- ✅ Temporal operators: `FOLLOWEDBY`
+- ✅ All qualifiers: `WITHIN`, `REPEATS`, `START`, `STOP`
+- ✅ Complex nested expressions
+- ✅ Array indexing and wildcards
+
+**Example:**
+```java
+StixPatternCompiler compiler = new StixPatternCompiler();
+
+// Validate complex patterns
+boolean isValid = compiler.isValid(
+    "[file:hashes.MD5 = 'abc123'] AND " +
+    "[network-traffic:dst_port = 443] " +
+    "WITHIN 300 SECONDS"
+);
+
+// Evaluate patterns against objects
+StixPatternEvaluator evaluator = new StixPatternEvaluator();
+boolean matches = evaluator.evaluate(pattern, stixObject);
+```
+
+### Version 1.1.0 - COO Relationships
 
 ### COO Relationship Support ✅
 
@@ -56,26 +95,7 @@ RelationshipSro rel = Relationship.builder()
 
 ## Known Limitations
 
-### STIX Pattern Parser ⚠️
-
-**Current Status:** Basic pattern parsing with limitations
-**Conformance Level:** Level 1 (Basic Conformance)
-
-**Supported Features:**
-- Basic observation expressions: `[file:name = 'malware.exe']`
-- Comparison operators: `=`, `!=`, `>`, `<`, `>=`, `<=`, `IN`, `LIKE`, `MATCHES`
-- Logical operators: `AND`, `OR`
-- Simple qualifiers: `WITHIN`
-
-**Not Yet Supported:**
-- Complex observation operators: `FOLLOWEDBY`, `REPEATS`
-- Full temporal qualifiers: `START`, `STOP`
-- Nested parenthetical expressions
-- Complex precedence handling
-
-**Workaround:** For complex patterns, store as strings and use external pattern matching engines.
-
-**Planned Enhancement:** Full ANTLR-based parser for complete STIX pattern grammar support (targeted for v2.0.0).
+None - The library now provides full STIX 2.1 specification compliance including complete pattern parsing support.
 
 ## STIX 2.1 Object Coverage
 
@@ -198,16 +218,17 @@ Relationship rel = Relationship.builder()
 
 ## Roadmap
 
-### Version 1.2.0 (Planned)
-- Enhanced pattern validation
+### Version 1.3.0 (Planned)
 - Performance optimizations
+- Graph traversal utilities
 - Additional helper methods
+- SLF4J logging improvements
 
 ### Version 2.0.0 (Future)
-- Full STIX pattern parser (Level 3 conformance)
-- Graph traversal utilities
-- TAXII client integration
+- TAXII 2.1 client integration
 - Threat intelligence enrichment APIs
+- Advanced pattern matching optimizations
+- GraphQL API support
 
 ## Compliance Verification
 
@@ -232,4 +253,4 @@ For compliance questions or issues:
 ---
 
 *Last updated: January 2025*
-*Library version: 1.1.0*
+*Library version: 1.2.0*

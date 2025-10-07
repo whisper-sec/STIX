@@ -34,7 +34,7 @@ public class StixPatternValidator {
         }
 
         // Parse the pattern
-        StixPattern pattern = StixPatternParser.parse(patternString);
+        StixPattern pattern = StixPatternSimpleParser.parse(patternString);
 
         // Check if parsing succeeded
         if (!pattern.isValid()) {
