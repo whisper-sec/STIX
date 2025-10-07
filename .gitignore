@@ -53,3 +53,24 @@ build-reports/
 # Maven
 log/
 /.mvn/
+
+# Deployment and Security Files
+MAVEN_CENTRAL_DEPLOYMENT.md
+DEPLOYMENT_GUIDE.md
+RELEASE_NOTES_INTERNAL.md
+settings.xml
+*.asc
+*.gpg
+*-private.key
+*-public.key
+
+# Local configuration
+local.properties
+deployment.properties
+secrets.properties
+
+# Credentials and tokens
+.env
+.credentials
+maven-central-token.txt
+gpg-passphrase.txt
