@@ -2,31 +2,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <url>https://noctisnet.com</url>
-    <groupId>com.noctisnet</groupId>
+    <url>https://whisper.security</url>
+    <groupId>security.whisper</groupId>
     <artifactId>stix2.1</artifactId>
-    <version>v0.2.0</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>Noctis STIX 2.1</name>
-    <description>Noctis STIX Java Library</description>
+    <name>Whisper STIX 2.1</name>
+    <description>Whisper STIX Java Library</description>
     <licenses>
         <license>
-            <name>MIT License</name>
-            <url>https://opensource.org/licenses/MIT</url>
+            <name>BSD 2-Clause License</name>
+            <url>https://opensource.org/licenses/BSD-2-Clause</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
     <scm>
-        <url>https://github.com/NoctisNet/STIX</url>
-        <connection>scm:git:https://github.com/NoctisNet/STIX.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:NoctisNet/STIX.git</developerConnection>
+        <url>https://github.com/whisper-security/STIX</url>
+        <connection>scm:git:https://github.com/whisper-security/STIX.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:whisper-security/STIX.git</developerConnection>
     </scm>
     <developers>
         <developer>
             <id>XiVGkLP4</id>
             <name>Kaveh Ranjbar</name>
-            <email>kaveh@noctisnet.com</email>
+            <email>kaveh@whisper.security</email>
         </developer>
     </developers>
     <properties>
@@ -183,6 +183,26 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- JUnit 5 dependencies for new tests -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.9.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.9.3</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -207,7 +227,7 @@
             <!-- Only required if names of spec classes don't match default Surefire patterns (`*Test` etc.) -->
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.20.1</version>
+                <version>3.0.0-M7</version>
                 <configuration>
                     <useFile>false</useFile>
                     <includes>
@@ -260,7 +280,7 @@
                 <configuration>
                     <failOnError>false</failOnError>
                     <additionalJOption>-Xdoclint:none</additionalJOption>
-                    <excludePackageNames>com.noctisnet.stix.generated,com.noctisnet.stix.otherpackage</excludePackageNames>
+                    <excludePackageNames>security.whisper.javastix.generated,security.whisper.javastix.otherpackage</excludePackageNames>
                 </configuration>
                 <executions>
                     <execution>

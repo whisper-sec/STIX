@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-This document outlines the improvements made in v0.2.0 and recommendations for future enhancements to the NoctisNet STIX 2.1 library. Version 0.2.0 includes critical fixes that enable proper Bundle construction and vocabulary support.
+This document outlines the improvements made in v0.2.0 and recommendations for future enhancements to the Whisper Security STIX 2.1 library. Version 0.2.0 includes critical fixes that enable proper Bundle construction and vocabulary support.
 
 ---
 
@@ -345,7 +345,7 @@ public static boolean isValidReference(String ref, String expectedType) {
 
 **README.md**:
 ```markdown
-# NoctisNet STIX 2.1 Library
+# Whisper Security STIX 2.1 Library
 
 A Java library for creating and parsing STIX 2.1 threat intelligence objects.
 

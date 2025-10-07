@@ -2,8 +2,8 @@ package stix.datamarkings
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.noctisnet.stix.datamarkings.MarkingDefinition
-import com.noctisnet.stix.json.StixParsers
+import security.whisper.javastix.datamarkings.MarkingDefinition
+import security.whisper.javastix.json.StixParsers
 import org.skyscreamer.jsonassert.JSONAssert
 import org.skyscreamer.jsonassert.JSONCompareMode
 import spock.lang.Shared

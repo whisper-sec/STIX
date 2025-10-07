@@ -1,10 +1,10 @@
 package stix.custom
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.noctisnet.stix.bundle.BundleableObject
-import com.noctisnet.stix.custom.StixCustomObject
-import com.noctisnet.stix.custom.objects.CustomObject
-import com.noctisnet.stix.json.StixParsers
+import security.whisper.javastix.bundle.BundleableObject
+import security.whisper.javastix.custom.StixCustomObject
+import security.whisper.javastix.custom.objects.CustomObject
+import security.whisper.javastix.json.StixParsers
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll

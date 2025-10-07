@@ -2,8 +2,8 @@ package stix.sdo
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.noctisnet.stix.json.StixParsers
-import com.noctisnet.stix.sdo.objects.IntrusionSet
+import security.whisper.javastix.json.StixParsers
+import security.whisper.javastix.sdo.objects.IntrusionSet
 import org.skyscreamer.jsonassert.JSONAssert
 import org.skyscreamer.jsonassert.JSONCompareMode
 import spock.lang.Shared

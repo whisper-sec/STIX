@@ -6,9 +6,9 @@ import com.fasterxml.jackson.core.TreeNode
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ArrayNode
-import com.noctisnet.stix.bundle.Bundle
-import com.noctisnet.stix.bundle.BundleableObject
-import com.noctisnet.stix.json.StixParsers
+import security.whisper.javastix.bundle.Bundle
+import security.whisper.javastix.bundle.BundleableObject
+import security.whisper.javastix.json.StixParsers
 import org.skyscreamer.jsonassert.JSONAssert
 import org.skyscreamer.jsonassert.JSONCompareMode
 import spock.lang.Ignore

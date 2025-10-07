@@ -1,14 +1,14 @@
 package stix.bundle
 
-import com.noctisnet.stix.bundle.Bundle
-import com.noctisnet.stix.common.StixInstant
-import com.noctisnet.stix.coo.objects.DomainName
-import com.noctisnet.stix.coo.objects.Ipv4Address
-import com.noctisnet.stix.graph.StixGraphGenerator
-import com.noctisnet.stix.sdo.objects.AttackPattern
-import com.noctisnet.stix.sdo.objects.ObservedData
-import com.noctisnet.stix.sro.objects.Relationship
-import com.noctisnet.stix.sro.objects.Sighting
+import security.whisper.javastix.bundle.Bundle
+import security.whisper.javastix.common.StixInstant
+import security.whisper.javastix.coo.objects.DomainName
+import security.whisper.javastix.coo.objects.Ipv4Address
+import security.whisper.javastix.graph.StixGraphGenerator
+import security.whisper.javastix.sdo.objects.AttackPattern
+import security.whisper.javastix.sdo.objects.ObservedData
+import security.whisper.javastix.sro.objects.Relationship
+import security.whisper.javastix.sro.objects.Sighting
 import spock.lang.Specification
 
 class BundleGraphSpec extends Specification {

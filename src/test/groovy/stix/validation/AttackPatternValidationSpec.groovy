@@ -1,7 +1,7 @@
 package stix.validation
 
-import com.noctisnet.stix.json.StixParserValidationException
-import com.noctisnet.stix.json.StixParsers
+import security.whisper.javastix.json.StixParserValidationException
+import security.whisper.javastix.json.StixParsers
 import spock.lang.Specification
 
 class AttackPatternValidationSpec extends Specification {
