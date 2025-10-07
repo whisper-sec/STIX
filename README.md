@@ -3,7 +3,7 @@
 [![License: BSD-2-Clause](https://img.shields.io/badge/License-BSD%202--Clause-blue.svg)](LICENSE)
 [![Java: 8+](https://img.shields.io/badge/Java-8%2B-orange.svg)](https://www.oracle.com/java/)
 [![STIX: 2.1](https://img.shields.io/badge/STIX-2.1-green.svg)](https://oasis-open.github.io/cti-documentation/)
-[![Maven: 1.3.4](https://img.shields.io/badge/Maven-1.3.4-red.svg)](https://search.maven.org/artifact/security.whisper/stix2.1)
+[![Maven: 1.3.5](https://img.shields.io/badge/Maven-1.3.5-red.svg)](https://search.maven.org/artifact/security.whisper/stix2.1)
 
 A professional Java implementation of the [STIX 2.1](https://oasis-open.github.io/cti-documentation/stix/intro.html) specification for cyber threat intelligence sharing, designed for both software developers and cybersecurity professionals.
 
@@ -40,14 +40,14 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory:
 <dependency>
     <groupId>security.whisper</groupId>
     <artifactId>stix2.1</artifactId>
-    <version>1.3.4</version>
+    <version>1.3.5</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```gradle
-implementation 'security.whisper:stix2.1:1.3.4'
+implementation 'security.whisper:stix2.1:1.3.5'
 ```
 
 ### Your First STIX Object

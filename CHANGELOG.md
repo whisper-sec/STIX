@@ -5,6 +5,33 @@ All notable changes to the STIX 2.1 Java Library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.5] - 2025-10-07
+
+### 🐛 Critical Bug Fix - Missing Relationship Types
+
+This release fixes a critical production issue where the "resolves-to" relationship type was not defined in the RelationshipTypes vocabulary, causing 500 errors when creating domain-to-IP relationships.
+
+### Fixed
+- **Missing STIX 2.1 Relationship Types** (RelationshipTypes.java)
+  - Added comprehensive list of all STIX 2.1 relationship types (32+ types)
+  - Organized relationship types into three categories:
+    - **SDO Relationship Types** (27 types): targets, uses, attributed-to, mitigates, indicates, variant-of, impersonates, compromises, originates-from, investigates, remediates, located-at, consists-of, controls, belongs-to, beacons-to, exfiltrates-to, downloads, drops, exploits, characterizes, analysis-of, static-analysis-of, dynamic-analysis-of, authored-by, operates-on, has
+    - **SCO Relationship Types** (2 types): resolves-to, contains
+    - **Common Relationship Types** (3 types): duplicate-of, derived-from, related-to
+  - Critical fix: Added "resolves-to" for domain-to-IP observable relationships
+  - Updated getAllTerms() to properly merge all three categories
+
+### Technical Impact
+- Fixes 500 errors in STIX service when creating observable relationships
+- Enables proper domain-to-IP relationship creation with "resolves-to" type
+- Provides complete STIX 2.1 relationship vocabulary as per specification
+- Prevents validation failures for standard STIX 2.1 relationship types
+
+### Compatibility
+- ✅ Full STIX 2.1 specification compliance
+- ✅ Backward compatible with existing code
+- ✅ All relationship types from STIX 2.1 spec now supported
+
 ## [1.3.4] - 2025-10-07
 
 ### 🐛 Critical Bug Fix - Timestamp Serialization
