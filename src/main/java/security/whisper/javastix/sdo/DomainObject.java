@@ -6,7 +6,6 @@ import security.whisper.javastix.common.StixCustomProperties;
 import security.whisper.javastix.common.StixLabels;
 import security.whisper.javastix.common.StixModified;
 import security.whisper.javastix.common.StixRevoked;
-import security.whisper.javastix.common.*;
 import security.whisper.javastix.sro.objects.RelationshipSro;
 
 import javax.validation.constraints.NotNull;
@@ -16,7 +15,8 @@ import java.util.Collections;
 import java.util.Set;
 
 /**
- * Base interface used by Immutable STIX Domain Objects
+ * Base interface used by Immutable STIX Domain Objects.
+ * Implements StixObject through StixCommonProperties which extends BundleableObject.
  */
 public interface DomainObject extends Serializable,
                                       StixCommonProperties,

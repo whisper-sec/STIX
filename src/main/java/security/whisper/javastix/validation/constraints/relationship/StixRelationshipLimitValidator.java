@@ -1,6 +1,6 @@
 package security.whisper.javastix.validation.constraints.relationship;
 
-import security.whisper.javastix.sdo.DomainObject;
+import security.whisper.javastix.bundle.BundleableObject;
 import security.whisper.javastix.sro.objects.RelationshipSro;
 
 import javax.validation.ConstraintValidator;
@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 
 public class StixRelationshipLimitValidator implements ConstraintValidator<RelationshipLimit, RelationshipSro> {
 
-    private Class<? extends DomainObject> source;
+    private Class<? extends BundleableObject> source;
     private String relationshipType;
-    private Class<? extends DomainObject>[] target;
+    private Class<? extends BundleableObject>[] target;
     private boolean classEquality;
 
     @Override

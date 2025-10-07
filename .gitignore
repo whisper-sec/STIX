@@ -58,11 +58,17 @@ log/
 MAVEN_CENTRAL_DEPLOYMENT.md
 DEPLOYMENT_GUIDE.md
 RELEASE_NOTES_INTERNAL.md
+BUILD_NOTES.md
 settings.xml
+maven-settings-template.xml
+maven-settings*.xml
 *.asc
 *.gpg
 *-private.key
 *-public.key
+
+# Build scripts
+build.sh
 
 # Local configuration
 local.properties

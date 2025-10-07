@@ -1,6 +1,6 @@
 package security.whisper.javastix.validation.constraints.relationship;
 
-import security.whisper.javastix.sdo.DomainObject;
+import security.whisper.javastix.bundle.BundleableObject;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -19,9 +19,9 @@ public @interface RelationshipLimit {
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 
-    Class<? extends DomainObject> source();
+    Class<? extends BundleableObject> source();
     String  relationshipType();
-    Class<? extends DomainObject>[] target();
+    Class<? extends BundleableObject>[] target();
     boolean classEquality() default false;
 
     @Documented

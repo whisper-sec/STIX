@@ -3,7 +3,8 @@ package security.whisper.javastix.sro.objects;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import security.whisper.javastix.json.converters.dehydrated.DomainObjectConverter;
+import security.whisper.javastix.bundle.BundleableObject;
+import security.whisper.javastix.json.converters.dehydrated.BundleableObjectConverter;
 import security.whisper.javastix.redaction.Redactable;
 import security.whisper.javastix.sdo.DomainObject;
 import security.whisper.javastix.sdo.objects.*;
@@ -26,8 +27,12 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 /**
  * relationship
  * <p>
- * The Relationship object is used to link together two SDOs in order to describe how they are related to each other.
- * 
+ * The Relationship object is used to link together two STIX Objects (SDOs or SCOs) in order to describe how they are related to each other.
+ * According to STIX 2.1 specification, relationships can be created between:
+ * - SDO to SDO
+ * - SDO to SCO
+ * - SCO to SCO
+ *
  */
 @Value.Immutable @Serial.Version(1L)
 @Value.Style(typeAbstract="*Sro", typeImmutable="*", validationMethod = Value.Style.ValidationMethod.NONE, additionalJsonAnnotations = {JsonTypeName.class}, depluralize = true)
@@ -70,6 +75,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @RelationshipLimit(source = ThreatActorSdo.class, relationshipType = "targets", target = {IdentitySdo.class, VulnerabilitySdo.class})
 @RelationshipLimit(source = ThreatActorSdo.class, relationshipType = "uses", target = {AttackPatternSdo.class, MalwareSdo.class, ToolSdo.class})
 @RelationshipLimit(source = ToolSdo.class, relationshipType = "targets", target = {IdentitySdo.class, VulnerabilitySdo.class})
+// Generic COO and mixed relationships - supports STIX 2.1 SCO relationships
 public interface RelationshipSro extends RelationshipObject {
 
     @NotBlank
@@ -86,20 +92,20 @@ public interface RelationshipSro extends RelationshipObject {
 
     @NotNull
     @JsonProperty("source_ref")
-	@JsonPropertyDescription("The ID of the source (from) object.")
+	@JsonPropertyDescription("The ID of the source (from) object. Can be either an SDO or SCO.")
     @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
     @JsonIdentityReference(alwaysAsId=true)
-    @JsonDeserialize(converter = DomainObjectConverter.class)
+    @JsonDeserialize(converter = BundleableObjectConverter.class)
     @Redactable(useMask = true)
-    DomainObject getSourceRef();
+    BundleableObject getSourceRef();
 
     @NotNull
     @JsonProperty("target_ref")
-	@JsonPropertyDescription("The ID of the target (to) object.")
+	@JsonPropertyDescription("The ID of the target (to) object. Can be either an SDO or SCO.")
     @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
     @JsonIdentityReference(alwaysAsId=true)
-    @JsonDeserialize(converter = DomainObjectConverter.class)
+    @JsonDeserialize(converter = BundleableObjectConverter.class)
     @Redactable(useMask = true)
-    DomainObject getTargetRef();
+    BundleableObject getTargetRef();
 
 }

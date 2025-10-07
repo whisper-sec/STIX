@@ -7,6 +7,10 @@ import security.whisper.javastix.validation.constraints.coo.allowedparents.Valid
 
 import java.io.Serializable;
 
+/**
+ * Base interface for STIX Cyber Observable Objects (SCOs).
+ * Implements StixObject through BundleableObject.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", include = JsonTypeInfo.As.EXISTING_PROPERTY)
 @ValidateExtensions
 public interface CyberObservableObject extends Serializable,
