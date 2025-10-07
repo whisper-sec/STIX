@@ -3,8 +3,8 @@ package security.whisper.javastix.validation.constraints.relationship;
 import security.whisper.javastix.bundle.BundleableObject;
 import security.whisper.javastix.sro.objects.RelationshipSro;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 

@@ -5,10 +5,10 @@ import org.slf4j.LoggerFactory;
 import security.whisper.javastix.validation.sequences.SequenceDefault;
 import security.whisper.javastix.validation.sequences.SequenceValidationIdOnly;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import javax.validation.Validation;
-import javax.validation.Validator;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 import java.util.Set;
 
 public interface SdoDefaultValidator {

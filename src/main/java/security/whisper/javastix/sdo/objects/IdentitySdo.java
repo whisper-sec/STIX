@@ -13,8 +13,8 @@ import security.whisper.javastix.vocabulary.vocabularies.IndustrySectors;
 import org.immutables.serial.Serial;
 import org.immutables.value.Value;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;

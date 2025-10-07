@@ -4,8 +4,8 @@ import security.whisper.javastix.coo.CyberObservableObject;
 import security.whisper.javastix.coo.extension.CyberObservableExtension;
 import security.whisper.javastix.validation.constraints.coo.allowedparents.AllowedParents;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.util.Arrays;
 import java.util.Optional;
 

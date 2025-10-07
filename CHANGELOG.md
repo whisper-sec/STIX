@@ -5,6 +5,35 @@ All notable changes to the STIX 2.1 Java Library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2025-10-07
+
+### 🔧 Jakarta EE Migration
+
+This patch release migrates the validation framework from the deprecated javax.validation to Jakarta EE's jakarta.validation, ensuring compatibility with modern Java EE/Jakarta EE environments.
+
+### Changed
+- **Validation Framework Migration**
+  - Migrated all 101 files from `javax.validation.*` to `jakarta.validation.*`
+  - Updated 191 import statements across the codebase
+  - Ensures compatibility with Jakarta EE 9+ environments
+
+- **Dependencies Updated**
+  - Upgraded Hibernate Validator from 6.0.13.Final to 8.0.1.Final (Jakarta-compatible)
+  - Replaced `javax.el` with `jakarta.expressly` 5.0.0 for expression language support
+  - Removed explicit `jakarta.validation-api` dependency (included transitively via Hibernate Validator)
+
+### Technical Details
+- All validation annotations now use `jakarta.validation.constraints.*`
+- Validator interfaces updated to `jakarta.validation.ConstraintValidator`
+- Group sequences migrated to `jakarta.validation.GroupSequence`
+- Maintained backward API compatibility - no breaking changes for end users
+
+### Compatibility
+- ✅ Jakarta EE 9+ compatible
+- ✅ Spring Boot 3.x compatible
+- ✅ All existing tests passing (71/71)
+- ✅ Binary compatible with previous versions (API unchanged)
+
 ## [1.3.0] - 2025-10-07
 
 ### 🚀 Major Feature Release - Advanced Graph Analysis

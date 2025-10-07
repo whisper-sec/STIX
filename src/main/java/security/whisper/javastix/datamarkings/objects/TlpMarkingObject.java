@@ -12,7 +12,7 @@ import security.whisper.javastix.vocabulary.vocabularies.TlpLevels;
 import org.immutables.serial.Serial;
 import org.immutables.value.Value;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Value.Immutable @Serial.Version(1L)
 @Value.Style(typeImmutable = "Tlp", additionalJsonAnnotations = {JsonTypeName.class}, validationMethod = Value.Style.ValidationMethod.NONE, depluralize = true)

@@ -3,8 +3,8 @@ package security.whisper.javastix.validation.constraints.hashingvocab;
 import com.google.common.collect.Sets;
 import security.whisper.javastix.vocabulary.StixVocabulary;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.HashSet;

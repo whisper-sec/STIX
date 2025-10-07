@@ -3,8 +3,8 @@ package security.whisper.javastix.validation.constraints.markingdefinitiontype;
 import security.whisper.javastix.datamarkings.MarkingDefinitionDm;
 import security.whisper.javastix.datamarkings.StixMarkingObject;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.lang.reflect.Field;
 
 public class StixMarkingDefinitionTypeLimitValidator implements ConstraintValidator<MarkingDefinitionTypeLimit, MarkingDefinitionDm> {

@@ -6,10 +6,10 @@ import security.whisper.javastix.validation.constraints.startswith.StartsWith;
 import security.whisper.javastix.validation.groups.ValidateIdOnly;
 import org.immutables.value.Value;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import javax.validation.groups.Default;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.groups.Default;
 
 /**
  *

@@ -1,7 +1,7 @@
 package security.whisper.javastix.validation.constraints.startswith;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class StixStartsWithValidatorString implements ConstraintValidator<StartsWith, String> {
 

@@ -12,9 +12,9 @@ import security.whisper.javastix.sdo.objects.ObservedDataSdo;
 import security.whisper.javastix.validation.GenericValidation;
 import org.immutables.value.Value;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;

@@ -3,7 +3,7 @@ package security.whisper.javastix.common;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.immutables.value.Value;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 public interface StixSpecVersion {
 

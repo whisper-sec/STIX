@@ -21,7 +21,7 @@ import security.whisper.javastix.datamarkings.objects.Statement;
 import security.whisper.javastix.datamarkings.objects.Tlp;
 import security.whisper.javastix.sro.objects.Relationship;
 import security.whisper.javastix.sro.objects.Sighting;
-import javax.validation.ValidationException;
+import jakarta.validation.ValidationException;
 import java.io.IOException;
 
 /**

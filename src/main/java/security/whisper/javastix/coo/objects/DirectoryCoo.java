@@ -10,7 +10,7 @@ import security.whisper.javastix.validation.groups.DefaultValuesProcessor;
 import org.immutables.serial.Serial;
 import org.immutables.value.Value;
 
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.Pattern;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import java.util.Set;

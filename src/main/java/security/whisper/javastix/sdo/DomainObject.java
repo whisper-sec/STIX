@@ -8,7 +8,7 @@ import security.whisper.javastix.common.StixModified;
 import security.whisper.javastix.common.StixRevoked;
 import security.whisper.javastix.sro.objects.RelationshipSro;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import org.immutables.value.Value;
 import java.io.Serializable;
 import java.util.Collections;

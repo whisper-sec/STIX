@@ -2,7 +2,7 @@ package security.whisper.javastix.graph.elements;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 public class Node implements GraphElement {
 

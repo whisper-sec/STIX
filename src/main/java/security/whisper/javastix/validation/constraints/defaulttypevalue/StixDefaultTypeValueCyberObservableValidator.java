@@ -2,8 +2,8 @@ package security.whisper.javastix.validation.constraints.defaulttypevalue;
 
 import security.whisper.javastix.coo.CyberObservableObject;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.lang.reflect.Field;
 
 /**
