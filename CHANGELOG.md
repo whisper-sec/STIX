@@ -5,6 +5,36 @@ All notable changes to the STIX 2.1 Java Library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.6] - 2025-10-07
+
+### ✨ Enhancement - Additional STIX 2.1 Relationship Types
+
+This release adds 8 additional STIX 2.1 relationship types that were missing from the vocabulary, ensuring complete coverage of the official specification.
+
+### Added
+- **Additional STIX 2.1 Relationship Types** (RelationshipTypes.java)
+  - Added 8 missing relationship types to SDO vocabulary:
+    - `based-on` - Used by Indicator objects to show derivation relationships
+    - `communicates-with` - Used by Infrastructure and Malware objects for network communications
+    - `delivers` - Used by Infrastructure, Malware, and Tool objects for payload delivery
+    - `hosts` - Used by Infrastructure, Intrusion Set, Malware, and Threat Actor objects
+    - `prevents` - Used by Course of Action objects to indicate prevention capabilities
+    - `similar` - Used by Attack Pattern objects to show similarity relationships
+    - `owns` - Ownership relationships between STIX objects
+    - `leverages` - Used to indicate leveraging of capabilities or resources
+  - Total relationship types now: 40+ (35 SDO types, 2 SCO types, 3 common types)
+
+### Technical Impact
+- Ensures complete STIX 2.1 specification compliance for relationship types
+- Enables creation of all standard STIX 2.1 relationship patterns
+- Improves interoperability with other STIX 2.1 implementations
+- Prevents validation failures for standard relationship types
+
+### Compatibility
+- ✅ Full STIX 2.1 specification compliance
+- ✅ Backward compatible with existing code
+- ✅ All standard STIX 2.1 relationship types now supported
+
 ## [1.3.5] - 2025-10-07
 
 ### 🐛 Critical Bug Fix - Missing Relationship Types

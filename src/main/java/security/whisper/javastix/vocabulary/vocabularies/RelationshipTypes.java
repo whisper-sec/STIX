@@ -38,7 +38,15 @@ public class RelationshipTypes implements StixVocabulary {
                 "dynamic-analysis-of",
                 "authored-by",
                 "operates-on",
-                "has"));
+                "has",
+                "based-on",
+                "communicates-with",
+                "delivers",
+                "hosts",
+                "prevents",
+                "similar",
+                "owns",
+                "leverages"));
 
     // Cyber Observable Object (SCO) Relationship Types
     private static final Set<String> cooTerms = new HashSet<>(Arrays.asList(
