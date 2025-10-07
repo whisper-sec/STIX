@@ -8,6 +8,11 @@ This guide walks you through installing the Whisper STIX 2.1 Java Library in you
 - **Maven 3.6+** or **Gradle 6+** for dependency management
 - An IDE such as IntelliJ IDEA, Eclipse, or VS Code (optional but recommended)
 
+### Jakarta EE Compatibility (v1.3.1+)
+- Fully compatible with Jakarta EE 9+ environments
+- Compatible with Spring Boot 3.x
+- Uses Jakarta validation instead of deprecated javax.validation
+
 ## Maven Installation
 
 Add the following dependency to your `pom.xml`:
@@ -16,7 +21,7 @@ Add the following dependency to your `pom.xml`:
 <dependency>
     <groupId>security.whisper</groupId>
     <artifactId>stix2.1</artifactId>
-    <version>1.0.0</version>
+    <version>1.3.1</version>
 </dependency>
 ```
 
@@ -56,7 +61,7 @@ Add the following to your `build.gradle`:
 
 ```gradle
 dependencies {
-    implementation 'security.whisper:stix2.1:1.0.0'
+    implementation 'security.whisper:stix2.1:1.3.1'
 }
 ```
 
@@ -76,7 +81,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'security.whisper:stix2.1:1.0.0'
+    implementation 'security.whisper:stix2.1:1.3.1'
 
     // Optional: Add logging
     implementation 'org.slf4j:slf4j-api:2.0.9'
@@ -120,9 +125,12 @@ mvn javadoc:javadoc
 The STIX library includes the following key dependencies:
 
 - **Jackson** (2.18.3) - JSON serialization/deserialization
-- **Immutables** (2.10.1) - Immutable value objects
-- **Hibernate Validator** (6.0.13.Final) - Bean validation
-- **Guava** (33.3.1-jre) - Core utilities
+- **Immutables** (2.7.3) - Immutable value objects
+- **Hibernate Validator** (8.0.1.Final) - Jakarta-compatible bean validation
+- **Jakarta Validation API** (3.0.2) - Jakarta EE validation specification
+- **Expressly** (5.0.0) - Jakarta Expression Language
+- **JGraphT** (1.5.2) - Graph analysis capabilities
+- **ANTLR4** (4.13.1) - Pattern parsing
 
 ## IDE Configuration
 
@@ -131,7 +139,7 @@ The STIX library includes the following key dependencies:
 1. Open your project
 2. File → Project Structure → Libraries
 3. Click '+' → From Maven
-4. Search for `security.whisper:stix2.1:1.0.0`
+4. Search for `security.whisper:stix2.1:1.3.1`
 5. Click OK
 
 ### Eclipse
@@ -140,7 +148,7 @@ The STIX library includes the following key dependencies:
 2. Maven → Add Dependency
 3. Enter Group Id: `security.whisper`
 4. Enter Artifact Id: `stix2.1`
-5. Enter Version: `1.0.0`
+5. Enter Version: `1.3.1`
 6. Click OK
 
 ### VS Code
