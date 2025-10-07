@@ -1,6 +1,10 @@
 package security.whisper.javastix.common;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import security.whisper.javastix.helpers.StixDataFormats;
+import security.whisper.javastix.json.StixInstantDeserializer;
+import security.whisper.javastix.json.StixInstantSerializer;
 
 import java.time.Instant;
 import java.util.Objects;
@@ -12,6 +16,8 @@ import java.util.regex.Pattern;
  * SubSecond precision count means that the number of digits (even if all zeros / trailing zeros) are remembered.
  * Use toString() to get the Stix string format for the datetime.
  */
+@JsonSerialize(using = StixInstantSerializer.class)
+@JsonDeserialize(using = StixInstantDeserializer.class)
 public class StixInstant {
 
     public static final Pattern REGEX_SUBSECOND = Pattern.compile("(?<fullDate>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(.(?<subSecond>[0-9]+))?Z)");

@@ -1,9 +1,16 @@
 package security.whisper.javastix.common;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import security.whisper.javastix.json.StixBooleanDeserializer;
+import security.whisper.javastix.json.StixBooleanSerializer;
+
 /**
  * Wrapper for boolean that is used in Stix to track if the boolean value was User provided.
  * Custom class is used instead of a Boolean in order to provide a more robust api
  */
+@JsonSerialize(using = StixBooleanSerializer.class)
+@JsonDeserialize(using = StixBooleanDeserializer.class)
 public class StixBoolean {
 
     private final boolean stixBooleanValue;

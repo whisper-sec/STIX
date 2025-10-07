@@ -3,7 +3,7 @@
 [![License: BSD-2-Clause](https://img.shields.io/badge/License-BSD%202--Clause-blue.svg)](LICENSE)
 [![Java: 8+](https://img.shields.io/badge/Java-8%2B-orange.svg)](https://www.oracle.com/java/)
 [![STIX: 2.1](https://img.shields.io/badge/STIX-2.1-green.svg)](https://oasis-open.github.io/cti-documentation/)
-[![Maven: 1.3.1](https://img.shields.io/badge/Maven-1.3.1-red.svg)](https://search.maven.org/artifact/security.whisper/stix2.1)
+[![Maven: 1.3.4](https://img.shields.io/badge/Maven-1.3.4-red.svg)](https://search.maven.org/artifact/security.whisper/stix2.1)
 
 A professional Java implementation of the [STIX 2.1](https://oasis-open.github.io/cti-documentation/stix/intro.html) specification for cyber threat intelligence sharing, designed for both software developers and cybersecurity professionals.
 
@@ -12,14 +12,15 @@ Maintained by [Whisper Security](https://whisper.security)
 ## 🚀 Features
 
 - **Complete STIX 2.1 Implementation**: Full support for all STIX Domain Objects (SDO), Relationship Objects (SRO), and Cyber Observable Objects (SCO)
-- **Jakarta EE Compatible** (v1.3.1): Full support for Jakarta EE 9+ and Spring Boot 3.x with Jakarta validation
+- **STIX 2.1 Specification Compliant** (v1.3.4): Comprehensive serialization audit ensures all objects serialize correctly as per STIX 2.1 spec
+- **Jakarta EE Compatible** (v1.3.2+): Full support for Jakarta EE 9+ and Spring Boot 3.x with Jakarta validation
 - **Advanced Graph Analysis** (v1.3.0): JGraphT-powered graph traversal, centrality analysis, and threat intelligence analytics
 - **Pattern Support** (v1.2.0): Full ANTLR4-based STIX pattern parser with evaluation capabilities
 - **Type-Safe Builder Pattern**: Intuitive, fluent API for creating STIX objects
 - **Automatic Validation**: Built-in validation against STIX 2.1 specification
 - **Immutable Objects**: Thread-safe, immutable objects for reliable concurrent processing
 - **Enhanced Logging**: SLF4J integration for comprehensive debugging and monitoring
-- **Production Ready**: Thoroughly tested with extensive test coverage
+- **Production Ready**: Thoroughly tested with extensive test coverage (77+ tests)
 
 ## 📚 Documentation
 
@@ -39,14 +40,14 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory:
 <dependency>
     <groupId>security.whisper</groupId>
     <artifactId>stix2.1</artifactId>
-    <version>1.3.1</version>
+    <version>1.3.4</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```gradle
-implementation 'security.whisper:stix2.1:1.3.1'
+implementation 'security.whisper:stix2.1:1.3.4'
 ```
 
 ### Your First STIX Object

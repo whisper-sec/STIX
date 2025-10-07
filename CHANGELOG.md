@@ -5,6 +5,93 @@ All notable changes to the STIX 2.1 Java Library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.4] - 2025-10-07
+
+### 🐛 Critical Bug Fix - Timestamp Serialization
+
+This release fixes a critical timestamp serialization issue where STIX objects were producing invalid JSON output when used in Spring Boot applications.
+
+### Fixed
+- **Timestamp Serialization Issue** (StixInstant.java, StixBoolean.java)
+  - Added `@JsonSerialize` and `@JsonDeserialize` annotations directly to `StixInstant` and `StixBoolean` classes
+  - Fixes issue where timestamps were serialized as objects instead of ISO 8601 strings
+  - Ensures proper serialization in Spring Boot REST APIs that use their own ObjectMapper
+  - Before: `"created": {"instant": "2025-10-07T16:33:18.310485596Z", "originalSubSecondPrecisionDigitCount": 3}`
+  - After: `"created": "2025-10-07T16:33:18.310Z"`
+
+### Technical Impact
+- Custom serializers now work automatically in all Jackson contexts
+- No need to manually configure Spring Boot applications with `StixParsers` modules
+- Maintains STIX 2.1 specification compliance for timestamp formats
+- Fixes Docker deployments and REST API integrations
+
+### Added
+- **Comprehensive Serialization Compliance Test Suite**
+  - New `SerializationComplianceTest.java` with 6 tests covering all serialization scenarios
+  - Validates timestamps serialize as ISO 8601 strings
+  - Verifies Bundle objects array is properly included
+  - Checks all SDO types for proper serialization
+  - Ensures full STIX 2.1 specification compliance
+
+### Verified
+- **Complete Serialization Audit**
+  - Audited all custom wrapper types (`StixInstant`, `StixBoolean`)
+  - Verified all specialized collection serializers (`CyberObservableSetFieldSerializer`, `CyberObservableExtensionsFieldSerializer`)
+  - Confirmed all value objects have proper Jackson annotations
+  - Tested all 77 tests pass with no serialization issues
+  - Validated compliance across all STIX 2.1 object types (SDO, SRO, COO)
+
+### Compatibility
+- ✅ Spring Boot 2.x and 3.x compatible
+- ✅ Works with any Jackson ObjectMapper configuration
+- ✅ Backward compatible with existing code
+- ✅ Full STIX 2.1 specification compliance verified
+- ✅ No further serialization issues expected
+
+## [1.3.3] - 2025-10-07
+
+### 🐛 Critical Bug Fix - Bundle Serialization
+
+This release fixes a critical serialization issue that prevented Bundle objects from properly serializing in REST APIs.
+
+### Fixed
+- **BundleObject Serialization Issue** (BundleObject.java:63)
+  - Removed `JsonProperty.Access.WRITE_ONLY` from `objects` field
+  - Fixes issue where `objects` array was completely omitted from JSON output
+  - Restores proper Bundle serialization for REST APIs and Docker deployments
+  - Ensures `objects` field is included in JSON responses
+
+### Technical Impact
+- **Before**: Bundles serialized without the `objects` array
+- **After**: Bundles properly include all STIX objects in serialization
+- Fixes Docker image builds that rely on proper Bundle serialization
+- Maintains backward compatibility with existing code
+
+## [1.3.2] - 2025-10-07
+
+### 🔧 Jakarta EE Migration - Production Release
+
+This release is identical to 1.3.1 but re-published as version 1.3.2 for Maven Central deployment.
+**Note: This version still contains the WRITE_ONLY bug. Please use 1.3.3 instead.**
+
+### Changed
+- **Version Bump to 1.3.2**
+  - Re-release of 1.3.1 content as 1.3.2 for Maven Central availability
+  - All Jakarta EE migration features included
+
+### Technical Details
+- All features from 1.3.1 are included:
+  - Full migration from `javax.validation.*` to `jakarta.validation.*`
+  - Hibernate Validator 8.0.1.Final (Jakarta-compatible)
+  - Jakarta Expression Language support via expressly 5.0.0
+  - 101 files updated with Jakarta imports
+
+### Compatibility
+- ✅ Jakarta EE 9+ compatible
+- ✅ Spring Boot 3.x compatible
+- ✅ All existing tests passing (71/71)
+- ✅ Binary compatible with previous versions (API unchanged)
+
 ## [1.3.1] - 2025-10-07
 
 ### 🔧 Jakarta EE Migration

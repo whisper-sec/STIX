@@ -60,7 +60,7 @@ If you're integrating this library with security tools and platforms, see the [S
 
 ## Version Information
 
-- **Library Version**: 1.3.1
+- **Library Version**: 1.3.4
 - **STIX Version**: 2.1
 - **Java Version**: 8+ (Java 8, 11, 17, 21 supported)
 - **Jakarta EE**: 9+ compatible (Spring Boot 3.x compatible)

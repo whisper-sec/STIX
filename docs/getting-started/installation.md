@@ -8,7 +8,7 @@ This guide walks you through installing the Whisper STIX 2.1 Java Library in you
 - **Maven 3.6+** or **Gradle 6+** for dependency management
 - An IDE such as IntelliJ IDEA, Eclipse, or VS Code (optional but recommended)
 
-### Jakarta EE Compatibility (v1.3.1+)
+### Jakarta EE Compatibility (v1.3.2+)
 - Fully compatible with Jakarta EE 9+ environments
 - Compatible with Spring Boot 3.x
 - Uses Jakarta validation instead of deprecated javax.validation
@@ -21,7 +21,7 @@ Add the following dependency to your `pom.xml`:
 <dependency>
     <groupId>security.whisper</groupId>
     <artifactId>stix2.1</artifactId>
-    <version>1.3.1</version>
+    <version>1.3.4</version>
 </dependency>
 ```
 
@@ -61,7 +61,7 @@ Add the following to your `build.gradle`:
 
 ```gradle
 dependencies {
-    implementation 'security.whisper:stix2.1:1.3.1'
+    implementation 'security.whisper:stix2.1:1.3.4'
 }
 ```
 
@@ -81,7 +81,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'security.whisper:stix2.1:1.3.1'
+    implementation 'security.whisper:stix2.1:1.3.4'
 
     // Optional: Add logging
     implementation 'org.slf4j:slf4j-api:2.0.9'
@@ -139,7 +139,7 @@ The STIX library includes the following key dependencies:
 1. Open your project
 2. File → Project Structure → Libraries
 3. Click '+' → From Maven
-4. Search for `security.whisper:stix2.1:1.3.1`
+4. Search for `security.whisper:stix2.1:1.3.4`
 5. Click OK
 
 ### Eclipse
