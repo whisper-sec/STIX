@@ -25,7 +25,7 @@
       "created": "2015-05-15T09:12:16.432Z",
       "modified": "2015-05-15T09:12:16.432Z",
       "name": "Ugly Gorilla",
-      "labels": [
+      "threat_actor_types": [
         "nation-state",
         "spy"
       ],
@@ -48,7 +48,7 @@
       "created": "2015-05-15T09:12:16.432Z",
       "modified": "2015-05-15T09:12:16.432Z",
       "name": "DOTA",
-      "labels": [
+      "threat_actor_types": [
         "nation-state",
         "spy"
       ],
@@ -70,7 +70,7 @@
       "created": "2015-05-15T09:12:16.432Z",
       "modified": "2015-05-15T09:12:16.432Z",
       "name": "SuperHard",
-      "labels": [
+      "threat_actor_types": [
         "nation-state"
       ],
       "sophistication": "expert",
@@ -92,7 +92,7 @@
       "modified": "2015-05-15T09:12:16.432Z",
       "name": "Communist Party of China",
       "description": " The CPC is the ultimate authority in Mainland China and tasks the PLA to commit cyber espionage and data theft against organizations around the world.",
-      "labels": [
+      "threat_actor_types": [
         "nation-state"
       ],
       "resource_level": "government",
@@ -112,7 +112,7 @@
       "modified": "2015-05-15T09:12:16.432Z",
       "name": "Unit 61398",
       "description": "Unit 61398 functions as the Third Department's premier entity targeting the United States and Canada, most likely focusing on political, economic, and military-related intelligence.",
-      "labels": [
+      "threat_actor_types": [
         "nation-state"
       ],
       "resource_level": "government",

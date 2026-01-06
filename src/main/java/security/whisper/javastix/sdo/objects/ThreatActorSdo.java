@@ -10,9 +10,10 @@ import security.whisper.javastix.validation.constraints.vocab.Vocab;
 import security.whisper.javastix.validation.groups.DefaultValuesProcessor;
 import security.whisper.javastix.vocabulary.vocabularies.AttackMotivations;
 import security.whisper.javastix.vocabulary.vocabularies.AttackResourceLevels;
-import security.whisper.javastix.vocabulary.vocabularies.ThreatActorLabels;
 import security.whisper.javastix.vocabulary.vocabularies.ThreatActorRoles;
 import security.whisper.javastix.vocabulary.vocabularies.ThreatActorSophistication;
+import security.whisper.javastix.vocabulary.vocabularies.ThreatActorTypes;
+import org.hibernate.validator.constraints.Length;
 import org.immutables.serial.Serial;
 import org.immutables.value.Value;
 
@@ -38,22 +39,19 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @JsonSerialize(as = ThreatActor.class) @JsonDeserialize(builder = ThreatActor.Builder.class)
 @JsonPropertyOrder({"type", "id", "created_by_ref", "created",
         "modified", "revoked", "labels", "external_references",
-        "object_marking_refs", "granular_markings", "uses", "name",
+        "object_marking_refs", "granular_markings", "uses", "threat_actor_types", "name",
         "description", "aliases", "roles", "goals", "sophistication",
         "resource_level", "primary_motivation", "secondary_motivation", "personal_motivations"})
 @Redactable
 public interface ThreatActorSdo extends DomainObject {
 
-    @Override
-    @Value.Default
     @NotNull
-    @Size(min = 1, message = "Must have at least one value from threat-actor-label-ov")
-    @Vocab(ThreatActorLabels.class)
-    @JsonPropertyDescription("This field specifies the type of threat actor. Open Vocab - threat-actor-label-ov")
+    @Size(min = 1, message = "Must have at least one value from threat-actor-type-ov")
+    @Vocab(ThreatActorTypes.class)
+    @JsonProperty("threat_actor_types")
+    @JsonPropertyDescription("The type(s) of this threat actor. Open Vocabulary: threat-actor-type-ov")
     @Redactable(useMask = true)
-    default Set<@Size(min = 1) String> getLabels() {
-        return Collections.emptySet();
-    }
+    Set<@Length(min = 1) String> getThreatActorTypes();
 
     @NotBlank
     @JsonProperty("name")

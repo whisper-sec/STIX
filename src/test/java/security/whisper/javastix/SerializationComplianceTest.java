@@ -120,7 +120,7 @@ public class SerializationComplianceTest {
 
         ThreatActor threatActor = ThreatActor.builder()
             .name("Test Actor")
-            .addLabel("hacker")
+            .addThreatActorType("hacker")
             .build();
 
         // Check each one
@@ -140,7 +140,7 @@ public class SerializationComplianceTest {
     void testRelationshipTimestamps() throws Exception {
         ThreatActor actor = ThreatActor.builder()
             .name("Test Actor")
-            .addLabel("hacker")
+            .addThreatActorType("hacker")
             .build();
 
         Malware malware = Malware.builder()

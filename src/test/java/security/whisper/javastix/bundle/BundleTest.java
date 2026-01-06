@@ -44,7 +44,7 @@ public class BundleTest {
 
         testThreatActor = ThreatActor.builder()
             .name("Test Actor")
-            .addLabel("hacker")
+            .addThreatActorType("hacker")
             .build();
     }
 

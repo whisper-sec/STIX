@@ -66,6 +66,7 @@ import security.whisper.javastix.vocabulary.vocabularies.ReportLabels
 import security.whisper.javastix.vocabulary.vocabularies.ThreatActorLabels
 import security.whisper.javastix.vocabulary.vocabularies.ThreatActorRoles
 import security.whisper.javastix.vocabulary.vocabularies.ThreatActorSophistication
+import security.whisper.javastix.vocabulary.vocabularies.ThreatActorTypes
 import security.whisper.javastix.vocabulary.vocabularies.TlpLevels
 import security.whisper.javastix.vocabulary.vocabularies.ToolLabels
 import security.whisper.javastix.vocabulary.vocabularies.WindowsPeBinaryTypes
@@ -1771,8 +1772,9 @@ class StixMockDataGenerator {
             }
         }
 
+        // REQUIRED: Add threat_actor_types (STIX 2.1)
         mock.ints().range(1, 5).get().times {
-            builder.addLabel(mock.fromStrings(new ThreatActorLabels().getAllTerms().toList()).get())
+            builder.addThreatActorType(mock.fromStrings(new ThreatActorTypes().getAllTerms().toList()).get())
         }
 
         builder.name(mock.names().get())

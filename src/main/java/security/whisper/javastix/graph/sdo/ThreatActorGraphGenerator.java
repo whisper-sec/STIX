@@ -45,19 +45,25 @@ public class ThreatActorGraphGenerator implements GraphGenerator {
                 threatActor.getDescription().orElse(""));
         }
 
-        if (threatActor.getLabels() != null && !threatActor.getLabels().isEmpty()) {
-            node.getData().getAdditionalProperties().put("labels", threatActor.getLabels());
+        // Add threat_actor_types (STIX 2.1)
+        if (threatActor.getThreatActorTypes() != null && !threatActor.getThreatActorTypes().isEmpty()) {
+            node.getData().getAdditionalProperties().put("threat_actor_types", threatActor.getThreatActorTypes());
 
-            // Set threat level based on labels
+            // Set threat level based on threat_actor_types
             String threatLevel = "unknown";
-            if (threatActor.getLabels().contains("nation-state")) {
+            if (threatActor.getThreatActorTypes().contains("nation-state")) {
                 threatLevel = "critical";
-            } else if (threatActor.getLabels().contains("crime-syndicate")) {
+            } else if (threatActor.getThreatActorTypes().contains("crime-syndicate")) {
                 threatLevel = "high";
-            } else if (threatActor.getLabels().contains("hacktivist")) {
+            } else if (threatActor.getThreatActorTypes().contains("activist")) {
                 threatLevel = "medium";
             }
             node.getData().getAdditionalProperties().put("threat_level", threatLevel);
+        }
+
+        // Keep labels as optional common property
+        if (threatActor.getLabels() != null && !threatActor.getLabels().isEmpty()) {
+            node.getData().getAdditionalProperties().put("labels", threatActor.getLabels());
         }
 
         if (threatActor.getAliases() != null && !threatActor.getAliases().isEmpty()) {

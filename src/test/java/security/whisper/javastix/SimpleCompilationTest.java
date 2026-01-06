@@ -49,13 +49,13 @@ public class SimpleCompilationTest {
     void testCreateThreatActor() {
         ThreatActor threatActor = ThreatActor.builder()
             .name("Test Actor")
-            .addLabel("hacker")
+            .addThreatActorType("hacker")
             .build();
 
         assertNotNull(threatActor);
         assertEquals("threat-actor", threatActor.getType());
         assertEquals("Test Actor", threatActor.getName());
-        assertTrue(threatActor.getLabels().contains("hacker"));
+        assertTrue(threatActor.getThreatActorTypes().contains("hacker"));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class SimpleCompilationTest {
     void testCreateRelationship() {
         ThreatActor actor = ThreatActor.builder()
             .name("Test Actor")
-            .addLabel("hacker")
+            .addThreatActorType("hacker")
             .build();
 
         Malware malware = Malware.builder()
