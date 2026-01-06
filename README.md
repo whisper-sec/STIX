@@ -1,9 +1,9 @@
 # STIX 2.1 Java Library
 
 [![License: BSD-2-Clause](https://img.shields.io/badge/License-BSD%202--Clause-blue.svg)](LICENSE)
-[![Java: 8+](https://img.shields.io/badge/Java-8%2B-orange.svg)](https://www.oracle.com/java/)
+[![Java: 11+](https://img.shields.io/badge/Java-11%2B-orange.svg)](https://www.oracle.com/java/)
 [![STIX: 2.1](https://img.shields.io/badge/STIX-2.1-green.svg)](https://oasis-open.github.io/cti-documentation/)
-[![Maven: 1.3.6](https://img.shields.io/badge/Maven-1.3.6-red.svg)](https://search.maven.org/artifact/security.whisper/stix2.1)
+[![Maven Central](https://img.shields.io/maven-central/v/security.whisper/stix2.1.svg)](https://central.sonatype.com/artifact/security.whisper/stix2.1)
 
 A professional Java implementation of the [STIX 2.1](https://oasis-open.github.io/cti-documentation/stix/intro.html) specification for cyber threat intelligence sharing, designed for both software developers and cybersecurity professionals.
 
@@ -40,14 +40,20 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory:
 <dependency>
     <groupId>security.whisper</groupId>
     <artifactId>stix2.1</artifactId>
-    <version>1.3.6</version>
+    <version>1.3.8</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```gradle
-implementation 'security.whisper:stix2.1:1.3.6'
+implementation 'security.whisper:stix2.1:1.3.8'
+```
+
+### Gradle (Kotlin DSL)
+
+```kotlin
+implementation("security.whisper:stix2.1:1.3.8")
 ```
 
 ### Your First STIX Object
@@ -57,10 +63,11 @@ import security.whisper.javastix.sdo.objects.*;
 import security.whisper.javastix.bundle.Bundle;
 import security.whisper.javastix.common.StixInstant;
 
-// Create a threat actor
+// Create a threat actor (STIX 2.1 compliant)
 ThreatActor aptGroup = ThreatActor.builder()
     .name("APT29")
-    .addLabel("nation-state")
+    .addThreatActorType("nation-state")  // Required in STIX 2.1
+    .addThreatActorType("spy")
     .description("Russian state-sponsored threat group")
     .sophistication("advanced")
     .resourceLevel("government")
@@ -70,6 +77,7 @@ ThreatActor aptGroup = ThreatActor.builder()
 // Create an indicator
 Indicator maliciousIP = Indicator.builder()
     .pattern("[ipv4-addr:value = '192.0.2.1']")
+    .patternType("stix")
     .validFrom(new StixInstant())
     .addLabel("malicious-activity")
     .confidence(95)
@@ -134,12 +142,18 @@ System.out.println(json);
 ### Vocabulary Validation
 
 ```java
-// Automatically validates against STIX vocabularies
+// Automatically validates against STIX 2.1 vocabularies
 ThreatActor actor = ThreatActor.builder()
     .name("APT1")
-    .addLabel("nation-state")     // ✅ Valid
-    // .addLabel("super-hacker")   // ❌ Would throw ValidationException
+    .addThreatActorType("nation-state")  // ✅ Valid (threat-actor-type-ov)
+    .addThreatActorType("spy")           // ✅ Valid
+    // .addThreatActorType("super-hacker") // ❌ Would fail validation
     .build();
+
+// Available threat actor types (threat-actor-type-ov):
+// activist, competitor, crime-syndicate, criminal, hacker,
+// insider-accidental, insider-disgruntled, nation-state,
+// sensationalist, spy, terrorist, unknown
 ```
 
 ### Pattern Creation
@@ -228,11 +242,12 @@ This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICE
 
 ## 📊 Project Status
 
-- **Current Version**: 1.3.0 (Stable)
-- **STIX Version**: 2.1
-- **Java Compatibility**: 8, 11, 17, 21
+- **Current Version**: 1.3.8 (Stable)
+- **STIX Version**: 2.1 (Fully Compliant)
+- **Java Compatibility**: 11, 17, 21
 - **Build Status**: ✅ Passing
 - **Documentation**: ✅ Complete
+- **Maven Central**: ✅ [Available](https://central.sonatype.com/artifact/security.whisper/stix2.1)
 
 ## 🚦 Roadmap
 
@@ -255,17 +270,19 @@ This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICE
 
 See [CHANGELOG.md](CHANGELOG.md) for a detailed version history.
 
-### Latest Release: v1.3.0
-- Advanced graph analysis with JGraphT integration
-- Graph traversal algorithms (Dijkstra, BFS, DFS)
-- Centrality analysis (degree, betweenness, closeness)
-- Threat intelligence analytics
-- Enhanced helper utilities for bundles, relationships, and patterns
-- Comprehensive SLF4J logging integration
+### Latest Release: v1.3.8
+- **STIX 2.1 ThreatActor Compliance**: Added `threat_actor_types` property using `threat-actor-type-ov` vocabulary
+- ThreatActor now requires at least one threat actor type (STIX 2.1 spec)
+- `labels` property is now optional for ThreatActor (common property)
 
 ### Previous Releases
+- **v1.3.7**: Fix Immutables dependency configuration
+- **v1.3.6**: Add missing STIX 2.1 relationship types
+- **v1.3.5**: Fix missing STIX 2.1 relationship types
+- **v1.3.4**: STIX 2.1 specification compliance and timestamp fix
+- **v1.3.2**: Jakarta EE 9+ compatibility (Spring Boot 3.x support)
+- **v1.3.0**: Advanced graph analysis with JGraphT integration
 - **v1.2.0**: ANTLR4-based STIX pattern parser and evaluator
-- **v1.1.0**: Enhanced validation and vocabulary support
 - **v1.0.0**: First stable release with complete STIX 2.1 support
 
 ---
