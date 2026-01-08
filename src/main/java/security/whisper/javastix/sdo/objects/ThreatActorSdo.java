@@ -17,6 +17,7 @@ import org.hibernate.validator.constraints.Length;
 import org.immutables.serial.Serial;
 import org.immutables.value.Value;
 
+import security.whisper.javastix.common.StixInstant;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -40,7 +41,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @JsonPropertyOrder({"type", "id", "created_by_ref", "created",
         "modified", "revoked", "labels", "external_references",
         "object_marking_refs", "granular_markings", "uses", "threat_actor_types", "name",
-        "description", "aliases", "roles", "goals", "sophistication",
+        "description", "aliases", "first_seen", "last_seen", "roles", "goals", "sophistication",
         "resource_level", "primary_motivation", "secondary_motivation", "personal_motivations"})
 @Redactable
 public interface ThreatActorSdo extends DomainObject {
@@ -73,6 +74,18 @@ public interface ThreatActorSdo extends DomainObject {
     default Set<String> getAliases() {
         return Collections.emptySet();
     }
+
+    @JsonProperty("first_seen")
+    @JsonInclude(value = NON_EMPTY, content = NON_EMPTY)
+    @JsonPropertyDescription("The time that this Threat Actor was first seen.")
+    @Redactable
+    Optional<StixInstant> getFirstSeen();
+
+    @JsonProperty("last_seen")
+    @JsonInclude(value = NON_EMPTY, content = NON_EMPTY)
+    @JsonPropertyDescription("The time that this Threat Actor was last seen.")
+    @Redactable
+    Optional<StixInstant> getLastSeen();
 
     @Value.Default
     @NotNull
