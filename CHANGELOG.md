@@ -5,6 +5,21 @@ All notable changes to the STIX 2.1 Java Library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.1] - 2026-05-14
+
+### 🔒 Security - Dependency Updates
+
+Patches three Dependabot-flagged medium-severity advisories. No API
+changes - drop-in upgrade from 1.4.0.
+
+### Changed
+- **`org.apache.commons:commons-lang3`** `3.8.1` → `3.18.0` - fixes
+  uncontrolled-recursion vulnerability on long inputs (GHSA-2cxf-6567-7pp6).
+- **`com.jayway.jsonpath:json-path`** `2.4.0` → `2.9.0` - fixes
+  out-of-bounds write vulnerability (CVE-2023-51074).
+- **`org.codehaus.groovy:groovy-all`** `2.4.15` → `2.4.21` (test scope) -
+  fixes information disclosure (CVE-2020-17521).
+
 ## [1.4.0] - 2026-05-14
 
 ### ✨ Feature - TAXII 2.1 Pull Client

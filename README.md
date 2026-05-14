@@ -277,7 +277,7 @@ This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICE
 
 ## 📊 Project Status
 
-- **Current Version**: 1.4.0 (Stable)
+- **Current Version**: 1.4.1 (Stable)
 - **STIX Version**: 2.1 (Fully Compliant)
 - **Java Compatibility**: 11, 17, 21
 - **Build Status**: ✅ Passing
