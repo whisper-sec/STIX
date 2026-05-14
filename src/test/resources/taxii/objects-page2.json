@@ -1,0 +1,15 @@
+{
+  "more": false,
+  "objects": [
+    {
+      "type": "indicator",
+      "id": "indicator--a932fcc6-e032-176c-126f-cb970a5a1ade",
+      "created": "2016-04-06T20:03:50.000Z",
+      "modified": "2016-04-06T20:03:50.000Z",
+      "labels": ["malicious-activity"],
+      "name": "Second IOC",
+      "pattern": "[ipv4-addr:value = '192.0.2.1']",
+      "valid_from": "2016-04-06T20:03:50Z"
+    }
+  ]
+}

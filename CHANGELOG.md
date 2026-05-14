@@ -5,6 +5,53 @@ All notable changes to the STIX 2.1 Java Library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-05-14
+
+### ✨ Feature - TAXII 2.1 Pull Client
+
+This release ships a TAXII 2.1 pull client implementing the discovery, API
+root, collection, object, and manifest endpoints from the OASIS TAXII 2.1
+specification. It closes the long-standing TAXII roadmap item and unblocks
+downstream consumers that need to ingest STIX from public TAXII feeds
+(Anomali Limo, MITRE CTI server, etc.).
+
+### Added
+- **`security.whisper.javastix.taxii.TaxiiClient`** - pull-mode client with
+  builder, cursor-based pagination, and a raw-URL overload for following
+  server-provided `next` links literally.
+- **`TaxiiCursor`** - opaque, serializable cursor token; persist between
+  runs for restart-safe incremental sync.
+- **`TaxiiFilter`** - typed builder for `match[type]`, `match[id]`,
+  `match[version]`, `match[spec_version]`, and `limit` query parameters.
+- **`TaxiiPage`** - one page of objects; exposes the body as a STIX bundle
+  (parseable via the existing `StixParsers.parseBundle` entry point),
+  pagination metadata, and the `X-TAXII-Date-Added-*` timestamps.
+- **`TaxiiHttpClient` SPI** - pluggable HTTP transport. Default impl
+  `JdkHttpClientAdapter` uses the JDK 11 `java.net.http.HttpClient` and
+  adds zero new transitive dependencies. Consumers can plug in Spring
+  `RestClient`, OkHttp, etc.
+- **Auth** - `BasicAuth`, `BearerAuth`, and a `TaxiiCredentials` SPI for
+  custom schemes; `TaxiiCredentials.ANONYMOUS` for guest-auth servers.
+- **Typed exception hierarchy** - `TaxiiAuthException`,
+  `TaxiiNotFoundException`, `TaxiiServerException`,
+  `TaxiiProtocolException`, `TaxiiTransportException`, all rooted at
+  `TaxiiException`.
+- **Tests** - JUnit 5 + WireMock unit coverage for discovery, API root,
+  collection enumeration, object pagination (added_after cursor + next
+  envelope), filter encoding, content-type validation, and 401 / 403 /
+  404 / 5xx error mapping. Optional live integration test against
+  Anomali Limo (enable with `-Dtaxii.it=true`).
+
+### Design notes
+- **No retry / circuit-breaker / rate-limit logic** in the client itself -
+  those are application-level concerns. Wrap with Resilience4j as needed.
+- **Reuses the library's Jackson `ObjectMapper`** via
+  `StixParsers.getJsonMapper()` - no parallel mapper that could drift in
+  module registration.
+- TAXII envelopes are not STIX bundles per spec §3.6.1; `TaxiiPage`
+  exposes the envelope contents wrapped in a synthetic STIX bundle so
+  callers can hand the body to `StixParsers.parseBundle` directly.
+
 ## [1.3.6] - 2025-10-07
 
 ### ✨ Enhancement - Additional STIX 2.1 Relationship Types

@@ -184,6 +184,41 @@ Malware malware = Malware.builder()
     .build();
 ```
 
+### TAXII 2.1 Pull Client
+
+Pull STIX bundles from a TAXII 2.1 server, page through collections, and feed
+the response straight into `StixParsers.parseBundle` - the same entry point
+the rest of the library uses.
+
+```java
+import security.whisper.javastix.taxii.*;
+import security.whisper.javastix.taxii.model.*;
+import security.whisper.javastix.bundle.BundleObject;
+
+try (TaxiiClient client = TaxiiClient.builder()
+        .baseUrl("https://limo.anomali.com/api/v1/taxii/taxii-discovery-service/")
+        .credentials("guest", "guest")
+        .build()) {
+
+    Discovery discovery = client.discover();
+    ApiRoot root = client.apiRoot(discovery.getApiRoots().get(0));
+    List<Collection> collections = client.collections(root);
+
+    TaxiiCursor cursor = TaxiiCursor.begin();
+    do {
+        TaxiiPage page = client.objects(root, collections.get(0), cursor,
+                TaxiiFilter.builder().addType("indicator").limit(100).build());
+        BundleObject bundle = page.bundle();   // delegates to StixParsers.parseBundle
+        // ... process bundle, persist cursor.toToken() for restart-safe sync
+        cursor = page.nextCursor();
+    } while (cursor.getAddedAfter().isPresent());
+}
+```
+
+The HTTP transport is pluggable - pass a `TaxiiHttpClient` to the builder to
+swap in Spring `RestClient`, OkHttp, or any other client. The default uses
+the JDK 11 `java.net.http.HttpClient` and adds no transitive dependencies.
+
 ## 🏗️ Architecture
 
 - **Immutable Objects**: Thread-safe by design using [Immutables](https://immutables.github.io/)
@@ -242,7 +277,7 @@ This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICE
 
 ## 📊 Project Status
 
-- **Current Version**: 1.3.8 (Stable)
+- **Current Version**: 1.4.0 (Stable)
 - **STIX Version**: 2.1 (Fully Compliant)
 - **Java Compatibility**: 11, 17, 21
 - **Build Status**: ✅ Passing
@@ -251,7 +286,7 @@ This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICE
 
 ## 🚦 Roadmap
 
-- [ ] TAXII 2.1 client implementation
+- [x] TAXII 2.1 client implementation (v1.4.0)
 - [x] STIX pattern parser and validator (v1.2.0)
 - [x] Graph analysis and traversal (v1.3.0)
 - [ ] GraphQL API for STIX objects
@@ -270,12 +305,13 @@ This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICE
 
 See [CHANGELOG.md](CHANGELOG.md) for a detailed version history.
 
-### Latest Release: v1.3.8
-- **STIX 2.1 ThreatActor Compliance**: Added `threat_actor_types` property using `threat-actor-type-ov` vocabulary
-- ThreatActor now requires at least one threat actor type (STIX 2.1 spec)
-- `labels` property is now optional for ThreatActor (common property)
+### Latest Release: v1.4.0
+- **TAXII 2.1 Pull Client**: `TaxiiClient` for discovery, API root, collection, object, and manifest endpoints with cursor-based pagination
+- Pluggable HTTP transport via `TaxiiHttpClient` SPI; default impl uses the JDK `java.net.http.HttpClient` (zero new dependencies)
+- Response bodies are handed to the existing `StixParsers.parseBundle` entry point - no parallel STIX parser
 
 ### Previous Releases
+- **v1.3.8**: STIX 2.1 ThreatActor `threat_actor_types` support
 - **v1.3.7**: Fix Immutables dependency configuration
 - **v1.3.6**: Add missing STIX 2.1 relationship types
 - **v1.3.5**: Fix missing STIX 2.1 relationship types

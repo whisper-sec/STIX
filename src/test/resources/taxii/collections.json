@@ -1,0 +1,24 @@
+{
+  "collections": [
+    {
+      "id": "91a7b528-80eb-42ed-a74d-c6fbd5a26116",
+      "title": "High Value Indicator Collection",
+      "description": "This collection contains a set of high value IOCs",
+      "can_read": true,
+      "can_write": false,
+      "media_types": [
+        "application/stix+json;version=2.0",
+        "application/stix+json;version=2.1"
+      ]
+    },
+    {
+      "id": "52892447-4d7e-4f70-b94d-d7f22742ff63",
+      "title": "Indicators from the Community",
+      "can_read": true,
+      "can_write": true,
+      "media_types": [
+        "application/stix+json;version=2.1"
+      ]
+    }
+  ]
+}

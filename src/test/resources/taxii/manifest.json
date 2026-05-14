@@ -1,0 +1,17 @@
+{
+  "more": false,
+  "objects": [
+    {
+      "id": "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+      "date_added": "2016-11-01T03:04:05Z",
+      "version": "2016-11-03T12:30:59.000Z",
+      "media_type": "application/stix+json;version=2.1"
+    },
+    {
+      "id": "malware--c0931cc6-c75e-47e5-9036-78fabc95d4ec",
+      "date_added": "2016-11-01T08:17:27Z",
+      "version": "2016-11-01T08:17:27.000Z",
+      "media_type": "application/stix+json;version=2.1"
+    }
+  ]
+}

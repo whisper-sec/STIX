@@ -1,0 +1,11 @@
+{
+  "title": "Some TAXII Server",
+  "description": "This TAXII Server contains a listing of...",
+  "contact": "string containing contact information",
+  "default": "https://taxii.example.com/api2/",
+  "api_roots": [
+    "https://taxii.example.com/api1/",
+    "https://taxii.example.com/api2/",
+    "https://taxii.example.com/trustgroup1/"
+  ]
+}

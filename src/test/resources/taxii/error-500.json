@@ -1,0 +1,7 @@
+{
+  "title": "Internal server error",
+  "description": "The server encountered an unexpected condition",
+  "error_id": "1234567",
+  "error_code": "500",
+  "http_status": "500"
+}

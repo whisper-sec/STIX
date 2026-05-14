@@ -1,0 +1,7 @@
+{
+  "title": "Authorization required",
+  "description": "Credentials were missing or invalid",
+  "error_id": "401",
+  "error_code": "401",
+  "http_status": "401"
+}

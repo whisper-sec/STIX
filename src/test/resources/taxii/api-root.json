@@ -1,0 +1,6 @@
+{
+  "title": "Malware Research Group",
+  "description": "A trust group setup for malware researchers",
+  "versions": ["application/taxii+json;version=2.1"],
+  "max_content_length": 9765625
+}

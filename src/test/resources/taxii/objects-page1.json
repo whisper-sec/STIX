@@ -1,0 +1,25 @@
+{
+  "more": true,
+  "next": "MjAyMC0xMC0xOQ==",
+  "objects": [
+    {
+      "type": "indicator",
+      "id": "indicator--8e2e2d2b-17d4-4cbf-938f-98ee46b3cd3f",
+      "created": "2016-04-06T20:03:48.000Z",
+      "modified": "2016-04-06T20:03:48.000Z",
+      "labels": ["malicious-activity"],
+      "name": "Poison Ivy Malware",
+      "description": "This indicator describes a Poison Ivy domain",
+      "pattern": "[domain-name:value = 'example.com']",
+      "valid_from": "2016-04-06T20:03:48Z"
+    },
+    {
+      "type": "malware",
+      "id": "malware--c0931cc6-c75e-47e5-9036-78fabc95d4ec",
+      "created": "2016-05-12T08:17:27.000Z",
+      "modified": "2016-05-12T08:17:27.000Z",
+      "name": "Poison Ivy",
+      "labels": ["remote-access-trojan"]
+    }
+  ]
+}
