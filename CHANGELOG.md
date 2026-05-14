@@ -428,10 +428,10 @@ For security vulnerabilities, please see [SECURITY.md](SECURITY.md).
 
 ## Support
 
-- GitHub Issues: https://github.com/whisper-security/STIX/issues
+- GitHub Issues: https://github.com/whisper-sec/STIX/issues
 - Documentation: See `docs/` directory
 - Email: support@whisper.security
 
 ---
 
-*For detailed changes, see the [Git commit history](https://github.com/whisper-security/STIX/commits/main)*
+*For detailed changes, see the [Git commit history](https://github.com/whisper-sec/STIX/commits/main)*

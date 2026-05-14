@@ -10,7 +10,7 @@
 
     <name>Whisper STIX 2.1</name>
     <description>A professional Java implementation of the STIX 2.1 specification for cyber threat intelligence sharing</description>
-    <url>https://github.com/whisper-security/STIX</url>
+    <url>https://github.com/whisper-sec/STIX</url>
     <licenses>
         <license>
             <name>BSD 2-Clause License</name>
@@ -19,9 +19,9 @@
         </license>
     </licenses>
     <scm>
-        <url>https://github.com/whisper-security/STIX</url>
-        <connection>scm:git:https://github.com/whisper-security/STIX.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:whisper-security/STIX.git</developerConnection>
+        <url>https://github.com/whisper-sec/STIX</url>
+        <connection>scm:git:https://github.com/whisper-sec/STIX.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:whisper-sec/STIX.git</developerConnection>
     </scm>
     <developers>
         <developer>
@@ -45,7 +45,7 @@
 
     <issueManagement>
         <system>GitHub Issues</system>
-        <url>https://github.com/whisper-security/STIX/issues</url>
+        <url>https://github.com/whisper-sec/STIX/issues</url>
     </issueManagement>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

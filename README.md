@@ -249,7 +249,7 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ```bash
 # Clone repository
-git clone https://github.com/whisper-security/STIX.git
+git clone https://github.com/whisper-sec/STIX.git
 cd STIX
 
 # Build project
@@ -273,7 +273,7 @@ This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICE
 
 - [OASIS Cyber Threat Intelligence TC](https://www.oasis-open.org/committees/cti/) for the STIX specification
 - [MITRE](https://www.mitre.org/) for ATT&CK framework integration
-- All [contributors](https://github.com/whisper-security/STIX/graphs/contributors) who have helped improve this library
+- All [contributors](https://github.com/whisper-sec/STIX/graphs/contributors) who have helped improve this library
 
 ## 📊 Project Status
 
@@ -296,8 +296,8 @@ This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICE
 ## 📧 Support
 
 - **Documentation**: [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/whisper-security/STIX/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/whisper-security/STIX/discussions)
+- **Issues**: [GitHub Issues](https://github.com/whisper-sec/STIX/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/whisper-sec/STIX/discussions)
 - **Email**: support@whisper.security
 - **Security**: security@whisper.security
 
