@@ -61,6 +61,39 @@
         <maven.compiler.showDeprecation>false</maven.compiler.showDeprecation>
     </properties>
 
+    <!--
+        Pin patched versions of transitively-pulled dependencies that ship known CVEs.
+        These overrides keep the build on secure releases without changing our direct deps.
+    -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Guava arrives transitively via jackson-datatype-guava. 25.1-jre is affected by
+                 CVE-2023-2976 (insecure temp-directory permissions, CVSS 7.1) and CVE-2020-8908.
+                 33.4.8-jre clears both. -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>33.4.8-jre</version>
+            </dependency>
+            <!-- json-smart arrives transitively via json-path. 2.5.0 is affected by
+                 CVE-2024-57699 (stack overflow on deeply nested input, CVSS 7.5).
+                 2.5.2 is the minimal patched release. -->
+            <dependency>
+                <groupId>net.minidev</groupId>
+                <artifactId>json-smart</artifactId>
+                <version>2.5.2</version>
+            </dependency>
+            <!-- commons-text arrives transitively via the test-only mockneat generator.
+                 1.9 is affected by CVE-2022-42889 (Text4Shell, CVSS 9.8); 1.10.0 is the fix.
+                 Test scope only, so it never ships in the published artifact. -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>1.10.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
