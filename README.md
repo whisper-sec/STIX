@@ -40,7 +40,7 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory:
 <dependency>
     <groupId>security.whisper</groupId>
     <artifactId>stix2.1</artifactId>
-    <version>1.3.8</version>
+    <version>1.4.2</version>
 </dependency>
 ```
 
@@ -277,7 +277,7 @@ This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICE
 
 ## 📊 Project Status
 
-- **Current Version**: 1.4.1 (Stable)
+- **Current Version**: 1.4.2 (Stable)
 - **STIX Version**: 2.1 (Fully Compliant)
 - **Java Compatibility**: 11, 17, 21
 - **Build Status**: ✅ Passing
@@ -305,12 +305,12 @@ This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICE
 
 See [CHANGELOG.md](CHANGELOG.md) for a detailed version history.
 
-### Latest Release: v1.4.0
-- **TAXII 2.1 Pull Client**: `TaxiiClient` for discovery, API root, collection, object, and manifest endpoints with cursor-based pagination
-- Pluggable HTTP transport via `TaxiiHttpClient` SPI; default impl uses the JDK `java.net.http.HttpClient` (zero new dependencies)
-- Response bodies are handed to the existing `StixParsers.parseBundle` entry point - no parallel STIX parser
+### Latest Release: v1.4.2
+- **Security**: pins patched transitive dependencies - guava `33.4.8-jre` (CVE-2023-2976, CVE-2020-8908), json-smart `2.5.2` (CVE-2024-57699), and test-only commons-text `1.10.0` (CVE-2022-42889). No API or direct-dependency changes; drop-in upgrade from 1.4.1.
 
 ### Previous Releases
+- **v1.4.1**: Dependency security updates (commons-lang3, json-path, groovy-all)
+- **v1.4.0**: TAXII 2.1 pull client (`TaxiiClient`) with cursor-based pagination and pluggable HTTP transport
 - **v1.3.8**: STIX 2.1 ThreatActor `threat_actor_types` support
 - **v1.3.7**: Fix Immutables dependency configuration
 - **v1.3.6**: Add missing STIX 2.1 relationship types

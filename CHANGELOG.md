@@ -5,6 +5,27 @@ All notable changes to the STIX 2.1 Java Library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.2] - 2026-07-19
+
+### 🔒 Security - Transitive Dependency Pins
+
+Pins patched versions of three transitive dependencies that carried known
+CVEs. No API changes and no direct-dependency changes - drop-in upgrade
+from 1.4.1. A `dependencyManagement` block forces the patched versions
+without altering the library's own declared dependencies.
+
+### Changed
+- **`com.google.guava:guava`** pinned to `33.4.8-jre` - fixes
+  information disclosure via temp directory (CVE-2023-2976) and
+  `AtomicDoubleArray`/`CompoundOrdering` deserialization issue
+  (CVE-2020-8908); pulled transitively via `jackson-datatype-guava`.
+- **`net.minidev:json-smart`** pinned to `2.5.2` - fixes a
+  denial-of-service via stack exhaustion (CVE-2024-57699); pulled
+  transitively via `json-path`.
+- **`org.apache.commons:commons-text`** pinned to `1.10.0` (test scope) -
+  fixes the RCE-capable string-interpolation issue (CVE-2022-42889);
+  pulled transitively via `mockneat`.
+
 ## [1.4.1] - 2026-05-14
 
 ### 🔒 Security - Dependency Updates
