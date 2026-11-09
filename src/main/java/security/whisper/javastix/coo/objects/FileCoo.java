@@ -38,7 +38,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @Value.Style(typeAbstract="*Coo", typeImmutable="*", validationMethod = Value.Style.ValidationMethod.NONE, additionalJsonAnnotations = {JsonTypeName.class}, depluralize = true, depluralizeDictionary = {"hash:hashes"})
 @JsonTypeName("file")
 @JsonSerialize(as = File.class) @JsonDeserialize(builder = File.Builder.class)
-@JsonPropertyOrder({ "type", "extensions", "hashes", "size", "name", "name_enc", "magic_number_hex", "mime_type", "created", "modified",
+@JsonPropertyOrder({ "type", "spec_version", "id", "extensions", "hashes", "size", "name", "name_enc", "magic_number_hex", "mime_type", "created", "modified",
         "accessed", "parent_directory_ref", "is_encrypted", "encryption_algorithm", "decryption_key" , "contains_refs", "content_ref", })
 @JsonInclude(value = NON_EMPTY, content= NON_EMPTY)
 @BusinessRule(ifExp = "isEncrypted().orElse(false) == false", thenExp = "getEncryptionAlgorithm().isPresent() == false && getDecryptionKey().isPresent() == false", errorMessage = "Encryption Algorithm and Description Key cannot be used if Encrypted equals false.")

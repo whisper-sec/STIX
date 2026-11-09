@@ -1,6 +1,7 @@
 package security.whisper.javastix.meta;
 
 import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import security.whisper.javastix.bundle.BundleableObject;
@@ -9,6 +10,8 @@ import security.whisper.javastix.common.StixCustomProperties;
 import security.whisper.javastix.common.StixInstant;
 import security.whisper.javastix.datamarkings.GranularMarkingDm;
 import security.whisper.javastix.datamarkings.MarkingDefinitionDm;
+import security.whisper.javastix.json.StixParsers;
+import security.whisper.javastix.json.converters.dehydrated.MarkingDefinitionSetConverter;
 import security.whisper.javastix.redaction.Redactable;
 import security.whisper.javastix.sdo.types.ExternalReferenceType;
 import security.whisper.javastix.validation.constraints.defaulttypevalue.DefaultTypeValue;
@@ -98,6 +101,9 @@ public interface LanguageContent extends Serializable, BundleableObject, StixCus
     Set<ExternalReferenceType> getExternalReferences();
 
     @JsonProperty("object_marking_refs") @JsonInclude(value = NON_EMPTY)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonDeserialize(converter = MarkingDefinitionSetConverter.class)
     @JsonPropertyDescription("The list of marking-definition objects to be applied to this object.")
     Set<MarkingDefinitionDm> getObjectMarkingRefs();
 
@@ -110,14 +116,34 @@ public interface LanguageContent extends Serializable, BundleableObject, StixCus
     @JsonPropertyDescription("Specifies the identifier of the object that this language content applies to.")
     String getObjectRef();
 
-    @NotNull
-    @JsonProperty("object_modified")
+    @JsonProperty("object_modified") @JsonInclude(value = NON_EMPTY)
     @JsonPropertyDescription("Specifies the modified time of the object that this language content applies to.")
-    StixInstant getObjectModified();
+    Optional<StixInstant> getObjectModified();
 
     @NotNull
     @JsonProperty("contents")
     @JsonPropertyDescription("A dictionary that captures the text content in different languages. The key is the language code and the value is a dictionary containing the translated content.")
-    Map<String, Map<String, String>> getContents();
+    Map<String, Map<String, Object>> getContents();
+
+    /**
+     * Dictates whether the object is hydrated (fully populated) or only a reference holding its id.
+     * Read from input when present, never written.
+     */
+    @Value.Default
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    default boolean getHydrated() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Value.Lazy
+    @Value.Auxiliary
+    default String toJsonString() {
+        try {
+            return StixParsers.getJsonMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new IllegalStateException("Cannot process JSON", e);
+        }
+    }
 
 }

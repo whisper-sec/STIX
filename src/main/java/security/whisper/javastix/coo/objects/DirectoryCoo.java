@@ -29,7 +29,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @Value.Style(typeAbstract="*Coo", typeImmutable="*", validationMethod = Value.Style.ValidationMethod.NONE, additionalJsonAnnotations = {JsonTypeName.class}, depluralize = true)
 @JsonTypeName("directory")
 @JsonSerialize(as = Directory.class) @JsonDeserialize(builder = Directory.Builder.class)
-@JsonPropertyOrder({"type", "extensions", "path", "path_enc", "created", "modified", "accessed", "contains_refs"})
+@JsonPropertyOrder({"type", "spec_version", "id", "extensions", "path", "path_enc", "created", "modified", "accessed", "contains_refs"})
 @JsonInclude(value = NON_EMPTY, content= NON_EMPTY)
 public interface DirectoryCoo extends CyberObservableObject {
 

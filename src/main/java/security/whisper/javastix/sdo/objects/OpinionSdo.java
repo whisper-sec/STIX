@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import security.whisper.javastix.bundle.BundleableObject;
+import security.whisper.javastix.json.converters.dehydrated.BundleableObjectSetConverter;
 import security.whisper.javastix.redaction.Redactable;
 import security.whisper.javastix.sdo.DomainObject;
 import security.whisper.javastix.validation.constraints.defaulttypevalue.DefaultTypeValue;
@@ -59,6 +60,9 @@ public interface OpinionSdo extends DomainObject {
     @NotNull
     @Size(min = 1)
     @JsonProperty("object_refs") @JsonInclude(value = NON_EMPTY, content= NON_EMPTY)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonDeserialize(converter = BundleableObjectSetConverter.class)
     @JsonPropertyDescription("The STIX Objects that this opinion is being applied to.")
     @Redactable
     Set<BundleableObject> getObjectRefs();

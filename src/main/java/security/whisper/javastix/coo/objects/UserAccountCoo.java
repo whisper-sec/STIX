@@ -33,7 +33,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @JsonSerialize(as = UserAccount.class) @JsonDeserialize(builder = UserAccount.Builder.class)
 @JsonInclude(value = NON_EMPTY, content= NON_EMPTY)
 @JsonTypeName("user-account")
-@JsonPropertyOrder({ "type", "extensions","user_id", "account_login", "account_type", "display_name",
+@JsonPropertyOrder({ "type", "spec_version", "id", "extensions","user_id", "account_login", "account_type", "display_name",
         "is_service_account", "is_privileged", "can_escalate_privs", "is_disabled", "account_created",
         "account_expires", "password_last_changed", "account_first_login", "account_last_login" })
 public interface UserAccountCoo extends CyberObservableObject {

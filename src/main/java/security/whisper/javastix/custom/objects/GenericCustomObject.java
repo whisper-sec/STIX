@@ -13,7 +13,7 @@ import org.immutables.value.Value;
 //@DefaultTypeValue(value = "", groups = {DefaultValuesProcessor.class})
 @Value.Style(typeAbstract="Generic*", typeImmutable="*", validationMethod = Value.Style.ValidationMethod.NONE, additionalJsonAnnotations = {JsonTypeName.class}, depluralize = true)
 @JsonSerialize(as = CustomObject.class) @JsonDeserialize(builder = CustomObject.Builder.class)
-@JsonPropertyOrder({"type", "id", "created_by_ref", "created",
+@JsonPropertyOrder({"type", "spec_version", "id", "created_by_ref", "created",
         "modified", "revoked", "labels", "external_references",
         "object_marking_refs", "granular_markings"})
 public interface GenericCustomObject extends StixCustomObject {

@@ -1,6 +1,6 @@
 # STIX 2.1 Compliance Report
 
-## Library Version: 1.2.0
+## Library Version: 2.0.0
 
 This document details the STIX 2.1 specification compliance status of the Whisper STIX Java library.
 
@@ -17,6 +17,29 @@ This document details the STIX 2.1 specification compliance status of the Whispe
 | Custom Objects | ✅ Full | 1.0.0+ | x- prefix custom objects supported |
 | Marking Definitions | ✅ Full | 1.0.0+ | TLP and custom markings |
 | Vocabularies | ✅ Full | 1.0.0+ | All STIX vocabularies implemented |
+
+## Conformance Testing (2.0.0)
+
+Conformance is measured, not asserted. `src/test/java/security/whisper/javastix/conformance`
+round-trips official OASIS material through the library and validates the output against the
+official [STIX 2.1 JSON schemas](https://github.com/oasis-open/cti-stix2-json-schemas), vendored
+under `src/test/resources/stix/oasis`:
+
+- every JSON example in the STIX 2.1 OASIS Standard that validates against those schemas
+  (`spec-2.1-examples.json`), and
+- the example bundles published with the schemas (`examples/`).
+
+Every object the library writes carries `spec_version: "2.1"`; every `*_ref`/`*_refs` property is
+written as identifiers; bundles carry no `spec_version` (STIX 2.1 section 8). On input,
+`spec_version` is a first-class property: `"2.1"` and `"2.0"` are accepted, an object without it is
+read as 2.1, and anything else is rejected.
+
+Samples that use parts of STIX 2.1 the library does not model yet are listed, each with its reason,
+in `src/test/resources/stix/oasis/known-gaps.txt`. The list is a ratchet: a listed sample must still
+fail and every other sample must round-trip cleanly, so the list only shrinks. The largest remaining
+gaps are SCO identifiers (an SCO's `id` is derived from its content instead of being read, and is not
+yet the STIX 2.1 UUIDv5 form) and 2.1 properties some SDOs do not model yet (for example Malware
+`is_family`/`malware_types`).
 
 ## Recent Enhancements
 
@@ -252,5 +275,5 @@ For compliance questions or issues:
 
 ---
 
-*Last updated: January 2025*
-*Library version: 1.2.0*
+*Last updated: November 2026*
+*Library version: 2.0.0*

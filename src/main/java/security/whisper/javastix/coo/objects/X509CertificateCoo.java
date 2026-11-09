@@ -34,7 +34,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @JsonTypeName("x509-certificate")
 @JsonSerialize(as = X509Certificate.class) @JsonDeserialize(builder = X509Certificate.Builder.class)
 @JsonInclude(value = NON_EMPTY, content= NON_EMPTY)
-@JsonPropertyOrder({ "type", "extensions", "is_self_signed", "hashes", "version", "serial_number",
+@JsonPropertyOrder({ "type", "spec_version", "id", "extensions", "is_self_signed", "hashes", "version", "serial_number",
         "signature_algorithm", "issuer", "validity_not_before", "validity_not_after",
         "subject", "subject_public_key_algorithm", "subject_public_key_modulus",
         "subject_public_key_exponent", "x509_v3_extensions"

@@ -34,7 +34,7 @@ import java.util.Set;
 @DefaultTypeValue(value = "observed-data", groups = {DefaultValuesProcessor.class})
 @Value.Style(typeAbstract="*Sdo", typeImmutable="*", validationMethod = Value.Style.ValidationMethod.NONE, additionalJsonAnnotations = {JsonTypeName.class}, depluralize = true)
 @JsonSerialize(as = ObservedData.class) @JsonDeserialize(builder = ObservedData.Builder.class)
-@JsonPropertyOrder({"type", "id", "created_by_ref", "created",
+@JsonPropertyOrder({"type", "spec_version", "id", "created_by_ref", "created",
         "modified", "revoked", "labels", "external_references",
         "object_marking_refs", "granular_markings", "first_observed", "last_observed",
         "number_observed", "objects"})

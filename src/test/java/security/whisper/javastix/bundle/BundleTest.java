@@ -76,14 +76,16 @@ public class BundleTest {
         }
 
         @Test
-        @DisplayName("Bundle with spec_version")
-        void testBundleSpecVersion() {
+        @DisplayName("Bundle reports the content version it was given, but never writes it")
+        void testBundleSpecVersion() throws Exception {
             Bundle bundle = Bundle.builder()
                 .specVersion("2.1")
                 .addObject(testIndicator)
                 .build();
 
             assertEquals("2.1", bundle.getSpecVersion());
+            JsonNode node = StixParsers.getJsonMapper().readTree(bundle.toJsonString());
+            assertFalse(node.has("spec_version"), "STIX 2.1 defines no spec_version on a bundle");
         }
 
         @Test
@@ -175,7 +177,7 @@ public class BundleTest {
 
         @Test
         @DisplayName("Bundle JSON serialization")
-        void testBundleJsonSerialization() {
+        void testBundleJsonSerialization() throws Exception {
             Bundle bundle = Bundle.builder()
                 .addObject(testIndicator)
                 .addObject(testMalware)
@@ -185,7 +187,11 @@ public class BundleTest {
             assertNotNull(json);
             assertTrue(json.contains("\"type\":\"bundle\""));
             System.out.println("JSON output: " + json);
-            assertTrue(json.contains("\"spec_version\":\"2.1\"") || json.contains("\"specVersion\":\"2.1\""));
+            assertFalse(json.contains("\"specVersion\""), "no Java property names on the wire");
+            // STIX 2.1 puts spec_version on every object, not on the bundle (section 8).
+            JsonNode node = StixParsers.getJsonMapper().readTree(json);
+            assertFalse(node.has("spec_version"));
+            node.get("objects").forEach(o -> assertEquals("2.1", o.get("spec_version").asText()));
             assertTrue(json.contains("\"objects\":["));
         }
 
@@ -201,7 +207,7 @@ public class BundleTest {
 
             assertEquals("bundle", node.get("type").asText());
             assertTrue(node.has("id"));
-            assertTrue(node.has("spec_version"));
+            assertFalse(node.has("spec_version"));
             assertTrue(node.has("objects"));
             assertTrue(node.get("objects").isArray());
             assertEquals(1, node.get("objects").size());

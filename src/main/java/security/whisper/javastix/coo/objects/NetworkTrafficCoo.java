@@ -34,7 +34,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @JsonSerialize(as = NetworkTraffic.class) @JsonDeserialize(builder = NetworkTraffic.Builder.class)
 @JsonInclude(value = NON_EMPTY, content= NON_EMPTY)
 @JsonTypeName("network-traffic")
-@JsonPropertyOrder({ "type", "extensions", "start", "end", "src_ref", "dst_ref", "src_port", "dst_port", "protocols", "src_byte_count",
+@JsonPropertyOrder({ "type", "spec_version", "id", "extensions", "start", "end", "src_ref", "dst_ref", "src_port", "dst_port", "protocols", "src_byte_count",
         "dst_byte_count", "src_packets", "dst_packets", "ipfix", "src_payload_ref", "dst_payload_ref",
         "encapsulates_refs", "encapsulated_by_ref" })
 public interface NetworkTrafficCoo extends CyberObservableObject {

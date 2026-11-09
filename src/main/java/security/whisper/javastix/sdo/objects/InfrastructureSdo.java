@@ -38,7 +38,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @Value.Style(typeAbstract="*Sdo", typeImmutable="*", validationMethod = Value.Style.ValidationMethod.NONE,
              additionalJsonAnnotations = {JsonTypeName.class}, depluralize = true)
 @JsonSerialize(as = Infrastructure.class) @JsonDeserialize(builder = Infrastructure.Builder.class)
-@JsonPropertyOrder({"type", "id", "created_by_ref", "created", "modified", "revoked", "labels",
+@JsonPropertyOrder({"type", "spec_version", "id", "created_by_ref", "created", "modified", "revoked", "labels",
         "external_references", "object_marking_refs", "granular_markings",
         "name", "description", "infrastructure_types", "aliases", "kill_chain_phases",
         "first_seen", "last_seen"})

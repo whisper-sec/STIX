@@ -29,7 +29,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @Value.Style(typeAbstract="*Sdo", typeImmutable="*", validationMethod = Value.Style.ValidationMethod.NONE, additionalJsonAnnotations = {JsonTypeName.class}, depluralize = true)
 @JsonTypeName("attack-pattern")
 @JsonSerialize(as = AttackPattern.class) @JsonDeserialize(builder = AttackPattern.Builder.class)
-@JsonPropertyOrder({"type", "id", "created_by_ref", "created",
+@JsonPropertyOrder({"type", "spec_version", "id", "created_by_ref", "created",
         "modified", "revoked", "labels", "external_references",
         "object_marking_refs", "granular_markings",
         "name", "description", "kill_chain_phases"})

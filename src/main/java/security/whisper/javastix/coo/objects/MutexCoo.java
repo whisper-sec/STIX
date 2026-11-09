@@ -26,7 +26,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @Value.Style(typeAbstract="*Coo", typeImmutable="*", validationMethod = Value.Style.ValidationMethod.NONE, additionalJsonAnnotations = {JsonTypeName.class}, depluralize = true)
 @JsonTypeName("mutex")
 @JsonSerialize(as = Mutex.class) @JsonDeserialize(builder = Mutex.Builder.class)
-@JsonPropertyOrder({"type", "extensions", "name"})
+@JsonPropertyOrder({"type", "spec_version", "id", "extensions", "name"})
 @JsonInclude(value = NON_EMPTY, content= NON_EMPTY)
 public interface MutexCoo extends CyberObservableObject {
 
