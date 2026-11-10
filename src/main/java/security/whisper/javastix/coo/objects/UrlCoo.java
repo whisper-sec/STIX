@@ -27,7 +27,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @Value.Style(typeAbstract="*Coo", typeImmutable="*", validationMethod = Value.Style.ValidationMethod.NONE, additionalJsonAnnotations = {JsonTypeName.class}, depluralize = true)
 @JsonTypeName("url")
 @JsonSerialize(as = Url.class) @JsonDeserialize(builder = Url.Builder.class)
-@JsonPropertyOrder({"type", "extensions", "value"})
+@JsonPropertyOrder({"type", "spec_version", "id", "extensions", "value"})
 @JsonInclude(value = NON_EMPTY, content= NON_EMPTY)
 public interface UrlCoo extends CyberObservableObject {
 

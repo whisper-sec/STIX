@@ -31,7 +31,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @JsonInclude(value = NON_EMPTY, content= NON_EMPTY)
 @JsonTypeName("software")
 @JsonPropertyOrder({
-    "type", "extensions", "cpe", "languages", "vendor", "version" })
+    "type", "spec_version", "id", "extensions", "cpe", "languages", "vendor", "version" })
 public interface SoftwareCoo extends CyberObservableObject {
 
     @JsonProperty("name")

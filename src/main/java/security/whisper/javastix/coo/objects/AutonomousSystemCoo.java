@@ -26,7 +26,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @Value.Style(typeAbstract="*Coo", typeImmutable="*", validationMethod = Value.Style.ValidationMethod.NONE, additionalJsonAnnotations = {JsonTypeName.class}, depluralize = true)
 @JsonTypeName("autonomous-system")
 @JsonSerialize(as = AutonomousSystem.class) @JsonDeserialize(builder = AutonomousSystem.Builder.class)
-@JsonPropertyOrder({"type", "extensions", "number", "name", "rir"})
+@JsonPropertyOrder({"type", "spec_version", "id", "extensions", "number", "name", "rir"})
 @JsonInclude(value = NON_EMPTY, content= NON_EMPTY)
 public interface AutonomousSystemCoo extends CyberObservableObject {
 

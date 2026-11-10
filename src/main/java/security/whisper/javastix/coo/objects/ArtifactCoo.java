@@ -27,7 +27,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @Value.Style(typeAbstract="*Coo", typeImmutable="*", validationMethod = Value.Style.ValidationMethod.NONE, additionalJsonAnnotations = {JsonTypeName.class}, depluralize = true, depluralizeDictionary = {"hash:hashes"})
 @JsonTypeName("artifact")
 @JsonSerialize(as = Artifact.class) @JsonDeserialize(builder = Artifact.Builder.class)
-@JsonPropertyOrder({"type", "extensions", "mime_type", "payload_bin", "url", "hashes"})
+@JsonPropertyOrder({"type", "spec_version", "id", "extensions", "mime_type", "payload_bin", "url", "hashes"})
 @JsonInclude(value = NON_EMPTY, content= NON_EMPTY)
 @BusinessRule(ifExp = "getUrl().isPresent() == true", thenExp = "getHashes().isEmpty() == false && getPayloadBin().isPresent() == false", errorMessage = "When Url is used, Hashes have at least 1 value, and payload_bin cannot be used.")
 @BusinessRule(ifExp = "getPayloadBin().isPresent() == true", thenExp = "getUrl().isPresent() == false && getHashes().isEmpty() == true", errorMessage = "When payload_bin is used, Url and hashes cannot be used.")

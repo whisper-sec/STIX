@@ -19,6 +19,8 @@ import security.whisper.javastix.sdo.objects.*;
 import security.whisper.javastix.datamarkings.MarkingDefinition;
 import security.whisper.javastix.datamarkings.objects.Statement;
 import security.whisper.javastix.datamarkings.objects.Tlp;
+import security.whisper.javastix.meta.ExtensionDefinitionObject;
+import security.whisper.javastix.meta.LanguageContentObject;
 import security.whisper.javastix.sro.objects.Relationship;
 import security.whisper.javastix.sro.objects.Sighting;
 import jakarta.validation.ValidationException;
@@ -63,15 +65,19 @@ public class StixParsers {
     }
 
     /**
-     * Generate a Jackson module for all STIX objects (SDOs, SROs, Markings, bundle, observables, and observable extensions)
+     * Generate a Jackson module for all STIX objects (SDOs, SROs, Language Content, Extension Definitions, Markings, bundle, observables, and observable extensions)
      *
      */
     public static SimpleModule generateStixSubTypesModule() {
         SimpleModule module = new SimpleModule();
 
         Class<?>[] sdoClasses = {AttackPattern.class, Campaign.class, CourseOfAction.class,
-                Identity.class, Indicator.class, IntrusionSet.class, Malware.class, ObservedData.class,
-                Report.class, ThreatActor.class, Tool.class, Vulnerability.class};
+                Grouping.class, Identity.class, Incident.class, Indicator.class, Infrastructure.class,
+                IntrusionSet.class, Location.class, Malware.class, MalwareAnalysis.class, Note.class,
+                ObservedData.class, Opinion.class, Report.class, ThreatActor.class, Tool.class,
+                Vulnerability.class};
+
+        Class<?>[] metaClasses = {LanguageContentObject.class, ExtensionDefinitionObject.class};
 
         Class<?>[] sroClasses = {Relationship.class, Sighting.class};
 
@@ -90,6 +96,7 @@ public class StixParsers {
                 WindowsServiceExtension.class};
 
         module.registerSubtypes(sdoClasses);
+        module.registerSubtypes(metaClasses);
         module.registerSubtypes(sroClasses);
         module.registerSubtypes(dataMarkingClasses);
         module.registerSubtypes(bundleClasses);
@@ -117,11 +124,7 @@ public class StixParsers {
         try {
             return getJsonMapper().readValue(bundleJsonString, BundleObject.class);
         } catch (IOException ex) {
-            if (ValidationException.class.isAssignableFrom(ex.getCause().getClass())) {
-                throw new StixParserValidationException((ValidationException) ex.getCause());
-            } else {
-                throw ex;
-            }
+            throw unwrapValidation(ex);
         }
     }
 
@@ -129,23 +132,29 @@ public class StixParsers {
         try {
             return getJsonMapper().readValue(objectJsonString, BundleableObject.class);
         } catch (IOException ex) {
-            if (ValidationException.class.isAssignableFrom(ex.getCause().getClass())) {
-                throw new StixParserValidationException((ValidationException) ex.getCause());
-            } else {
-                throw ex;
-            }
+            throw unwrapValidation(ex);
         }
     }
 
-        public static <T extends Stix> T parse(String bundleJsonString, Class<T> stixClass) throws IOException, StixParserValidationException {
+    public static <T extends Stix> T parse(String bundleJsonString, Class<T> stixClass) throws IOException, StixParserValidationException {
         try {
             return getJsonMapper().readValue(bundleJsonString, stixClass);
         } catch (IOException ex) {
-            if (ValidationException.class.isAssignableFrom(ex.getCause().getClass())) {
-                throw new StixParserValidationException((ValidationException) ex.getCause());
-            } else {
-                throw ex;
-            }
+            throw unwrapValidation(ex);
         }
+    }
+
+    /**
+     * Jackson wraps a bean-validation failure raised while building an object in an IOException.
+     * Surface it as a {@link StixParserValidationException}; any other parse failure (malformed JSON,
+     * a wrong type, an unknown required field) is rethrown as the IOException it is, with its own
+     * message, rather than masked by an error about the missing cause.
+     */
+    private static IOException unwrapValidation(IOException ex) throws StixParserValidationException {
+        Throwable cause = ex.getCause();
+        if (cause instanceof ValidationException) {
+            throw new StixParserValidationException((ValidationException) cause);
+        }
+        return ex;
     }
 }

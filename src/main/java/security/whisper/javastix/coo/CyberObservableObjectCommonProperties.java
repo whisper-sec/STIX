@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import security.whisper.javastix.coo.extension.CyberObservableExtension;
 import security.whisper.javastix.coo.json.extension.CyberObservableExtensionsFieldDeserializer;
 import security.whisper.javastix.coo.json.extension.CyberObservableExtensionsFieldSerializer;
-import security.whisper.javastix.sdo.objects.ObservedDataSdo;
 import security.whisper.javastix.validation.GenericValidation;
 import org.immutables.value.Value;
 
@@ -46,7 +45,7 @@ public interface CyberObservableObjectCommonProperties extends GenericValidation
     }
 
     /**
-     * Used for generation of Map Keys by {@link ObservedDataSdo#getObjects()}
+     * Used for generation of Map Keys by {@link security.whisper.javastix.sdo.objects.ObservedDataSdo#getObjects()}
      * Manually set this value if you want to control key names.  Otherwise UUIDs will be used.
      */
     @JsonProperty(value = "observable_object_key", access = JsonProperty.Access.WRITE_ONLY)

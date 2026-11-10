@@ -54,8 +54,8 @@
         <maven.compiler.target>17</maven.compiler.target>
         <java.version>17</java.version>
         <maven.compiler.release>17</maven.compiler.release>
-        <jackson.version>2.18.8</jackson.version>
-        <spring.version>6.2.11</spring.version>
+        <jackson.version>2.18.11</jackson.version>
+        <spring.version>6.2.19</spring.version>
         <antlr4.version>4.13.1</antlr4.version>
         <slf4j.version>2.0.9</slf4j.version>
         <maven.compiler.showWarnings>false</maven.compiler.showWarnings>
@@ -70,7 +70,7 @@
         <dependencies>
             <!-- spring-core arrives transitively via spring-expression. 5.3.39 is affected by
                  CVE-2025-41249 (Spring annotation-detection auth bypass, HIGH); the fix is only
-                 in the 6.2.x line (6.2.11), which requires Java 17. Pinning it here guarantees the
+                 in the 6.2.x line, which requires Java 17; 6.2.19 also clears CVE-2026-41850 (SpEL DoS). Pinning it here guarantees the
                  whole build resolves the patched spring-core regardless of transitive resolution. -->
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -79,11 +79,11 @@
             </dependency>
             <!-- Guava arrives transitively via jackson-datatype-guava. 25.1-jre is affected by
                  CVE-2023-2976 (insecure temp-directory permissions, CVSS 7.1) and CVE-2020-8908.
-                 33.4.8-jre clears both. -->
+                 33.7.2-jre clears both, and CVE-2026-102554 (deserialisation). -->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>33.4.8-jre</version>
+                <version>33.7.2-jre</version>
             </dependency>
             <!-- json-smart arrives transitively via json-path. 2.5.0 is affected by
                  CVE-2024-57699 (stack overflow on deeply nested input, CVSS 7.5).
@@ -300,6 +300,14 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
             <version>5.9.3</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Validates emitted JSON against the official OASIS STIX 2.1 JSON schemas (test only) -->
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>1.5.9</version>
             <scope>test</scope>
         </dependency>
 

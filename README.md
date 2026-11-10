@@ -1,7 +1,7 @@
 # STIX 2.1 Java Library
 
 [![License: BSD-2-Clause](https://img.shields.io/badge/License-BSD%202--Clause-blue.svg)](LICENSE)
-[![Java: 11+](https://img.shields.io/badge/Java-11%2B-orange.svg)](https://www.oracle.com/java/)
+[![Java: 17+](https://img.shields.io/badge/Java-17%2B-orange.svg)](https://www.oracle.com/java/)
 [![STIX: 2.1](https://img.shields.io/badge/STIX-2.1-green.svg)](https://oasis-open.github.io/cti-documentation/)
 [![Maven Central](https://img.shields.io/maven-central/v/security.whisper/stix2.1.svg)](https://central.sonatype.com/artifact/security.whisper/stix2.1)
 
@@ -278,8 +278,8 @@ This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICE
 ## 📊 Project Status
 
 - **Current Version**: 1.4.2 (Stable)
-- **STIX Version**: 2.1 (Fully Compliant)
-- **Java Compatibility**: 11, 17, 21
+- **STIX Version**: 2.1 (conformance measured against the OASIS samples and schemas; see [STIX_COMPLIANCE.md](STIX_COMPLIANCE.md))
+- **Java Compatibility**: 17, 21 (from 2.0.0; 1.4.x supports Java 11)
 - **Build Status**: ✅ Passing
 - **Documentation**: ✅ Complete
 - **Maven Central**: ✅ [Available](https://central.sonatype.com/artifact/security.whisper/stix2.1)

@@ -38,7 +38,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @JsonTypeName("threat-actor")
 @DefaultTypeValue(value = "threat-actor", groups = {DefaultValuesProcessor.class})
 @JsonSerialize(as = ThreatActor.class) @JsonDeserialize(builder = ThreatActor.Builder.class)
-@JsonPropertyOrder({"type", "id", "created_by_ref", "created",
+@JsonPropertyOrder({"type", "spec_version", "id", "created_by_ref", "created",
         "modified", "revoked", "labels", "external_references",
         "object_marking_refs", "granular_markings", "uses", "threat_actor_types", "name",
         "description", "aliases", "first_seen", "last_seen", "roles", "goals", "sophistication",

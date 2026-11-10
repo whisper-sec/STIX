@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import security.whisper.javastix.bundle.BundleableObject;
+import security.whisper.javastix.json.converters.dehydrated.BundleableObjectSetConverter;
 import security.whisper.javastix.redaction.Redactable;
 import security.whisper.javastix.sdo.DomainObject;
 import security.whisper.javastix.validation.constraints.defaulttypevalue.DefaultTypeValue;
@@ -13,6 +14,7 @@ import org.immutables.value.Value;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import java.util.Optional;
 import java.util.Set;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
@@ -31,9 +33,14 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @JsonSerialize(as = Note.class) @JsonDeserialize(builder = Note.Builder.class)
 @JsonPropertyOrder({"type", "spec_version", "id", "created_by_ref", "created",
         "modified", "revoked", "labels", "confidence", "external_references",
-        "object_marking_refs", "granular_markings", "content", "authors", "object_refs"})
+        "object_marking_refs", "granular_markings", "abstract", "content", "authors", "object_refs"})
 @Redactable
 public interface NoteSdo extends DomainObject {
+
+    @JsonProperty("abstract") @JsonInclude(value = NON_EMPTY, content= NON_EMPTY)
+    @JsonPropertyDescription("A brief summary of the note content.")
+    @Redactable
+    Optional<String> getAbstract();
 
     @NotBlank
     @JsonProperty("content")
@@ -48,6 +55,9 @@ public interface NoteSdo extends DomainObject {
 
     @NotNull
     @JsonProperty("object_refs") @JsonInclude(value = NON_EMPTY, content= NON_EMPTY)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonDeserialize(converter = BundleableObjectSetConverter.class)
     @JsonPropertyDescription("The objects that the note is being applied to.")
     @Redactable
     Set<BundleableObject> getObjectRefs();

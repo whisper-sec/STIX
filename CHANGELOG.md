@@ -5,6 +5,75 @@ All notable changes to the STIX 2.1 Java Library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - Unreleased
+
+### ⚠️ Breaking - STIX 2.1 conformance of the wire format, and Java 17
+
+Every object the library writes now states its STIX version, references are
+written as identifiers, and conformant STIX 2.1 content parses. Output from
+2.0.0 is read as STIX 2.1 by other implementations; 1.4.x output was not
+(the OASIS python-stix2 library reads a bundle that carries `spec_version` as
+STIX 2.0 and rejects it).
+
+### Fixed
+- **`spec_version` is written on every object** - SDOs, SROs, Marking
+  Definitions, custom objects, Language Content, Extension Definitions and
+  SCOs - as `"2.1"`, right after `type`. STIX 2.1 makes it required on all of
+  these except SCOs, where it is optional.
+- **`spec_version` is read as a first-class property.** A conformant 2.1
+  object used to be rejected with
+  `customProperties<K>[spec_version]: StartsWith violation`, which also broke
+  `TaxiiPage.objects()`. `"2.1"` and `"2.0"` (both allowed by the OASIS
+  schemas) are accepted and kept; any other value is rejected; an object
+  without it is read as 2.1.
+- **`object_refs` on Note, Opinion and Grouping is a list of identifiers**,
+  as on Report, instead of embedded objects. Language Content and Extension
+  Definition write `object_marking_refs` as identifiers too.
+- **Bundles no longer carry `spec_version`.** STIX 2.1 moved it from the
+  bundle onto each object (section 8). It is still accepted on input, so
+  2.0-style bundles parse; `BundleObject.getSpecVersion()` reports it.
+- **SCOs serialise in STIX form**: `toJsonString()` works (it returned null,
+  so a bundle holding an SCO could not be written), markings are written as
+  `object_marking_refs` / `granular_markings`, and the internal `hydrated`
+  flag is never written.
+- **Language Content and Extension Definition** serialise (`toJsonString()`
+  returned null) and parse through `StixParsers`. `ExtensionDefinition.schema`
+  is a string, as the spec defines it, Language Content `contents` values may
+  be any JSON value, not only strings, and its optional `object_modified` is
+  omitted when absent instead of written as `null`.
+- **Note `abstract`** (STIX 2.1) is modelled.
+- **`StixParsers` parses every STIX 2.1 SDO**: Grouping, Incident,
+  Infrastructure, Location, Malware Analysis, Note and Opinion were not
+  registered and parsed as generic custom objects.
+- **Parse errors are reported as themselves.** A parse failure that was not a
+  validation failure surfaced as a `NullPointerException` from the error path.
+
+### Changed
+- **`ExtensionDefinitionObject.getSchema()`** returns `String` (was
+  `Map<String, Object>`); the builder takes `.schema(String)`.
+- **`LanguageContentObject.getContents()`** is
+  `Map<String, Map<String, Object>>` (was `Map<String, Map<String, String>>`).
+- **`LanguageContentObject.getObjectModified()`** returns
+  `Optional<StixInstant>` (the property is optional in STIX 2.1).
+- **Requires Java 17+** (Spring 6.2.x floor, which clears CVE-2025-41249).
+
+### Security
+- **jackson** `2.18.8` -> `2.18.11`: clears CVE-2026-89407, CVE-2026-89425,
+  CVE-2026-68497, CVE-2026-91776, CVE-2026-91777 (HIGH, parser and
+  deserialisation DoS) and the MODERATE advisories, including GHSA-5jmj-h7xm-6q6v.
+- **Spring** `6.2.11` -> `6.2.19`: clears CVE-2026-41850 (SpEL DoS, HIGH) and
+  three MODERATE/LOW advisories.
+- **guava** `33.4.8-jre` -> `33.7.2-jre`: clears CVE-2026-102554 (HIGH).
+
+### Added
+- Conformance tests against the official OASIS material: every JSON example in
+  the STIX 2.1 specification that validates against the OASIS schemas, and the
+  example bundles from `oasis-open/cti-stix2-json-schemas`, are round-tripped
+  and the output is validated against those schemas. Samples that exercise
+  parts of STIX 2.1 the library does not model yet are listed with the reason
+  in `src/test/resources/stix/oasis/known-gaps.txt`, a ratchet the tests
+  enforce in both directions.
+
 ## [1.4.2] - 2026-07-19
 
 ### 🔒 Security - Transitive Dependency Pins

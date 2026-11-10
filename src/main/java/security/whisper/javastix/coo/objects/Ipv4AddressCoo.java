@@ -28,7 +28,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @JsonInclude(value = NON_EMPTY, content= NON_EMPTY)
 @JsonTypeName("ipv4-addr")
 @JsonSerialize(as = Ipv4Address.class) @JsonDeserialize(builder = Ipv4Address.Builder.class)
-@JsonPropertyOrder({"type", "extensions", "value", "resolves_to_refs", "belongs_to_refs"})
+@JsonPropertyOrder({"type", "spec_version", "id", "extensions", "value", "resolves_to_refs", "belongs_to_refs"})
 public interface Ipv4AddressCoo extends CyberObservableObject {
     // TODO  Consider using regexp to validate:
     // http://blog.markhatton.co.uk/2011/03/15/regular-expressions-for-ip-addresses-cidr-ranges-and-hostnames/

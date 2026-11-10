@@ -35,7 +35,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @DefaultTypeValue(value = "sighting", groups = {DefaultValuesProcessor.class})
 @JsonTypeName("sighting")
 @JsonSerialize(as = Sighting.class) @JsonDeserialize(builder = Sighting.Builder.class)
-@JsonPropertyOrder({"type", "id", "created_by_ref", "created",
+@JsonPropertyOrder({"type", "spec_version", "id", "created_by_ref", "created",
         "modified", "revoked", "labels", "external_references",
         "object_marking_refs", "granular_markings", "first_seen", "last_seen",
         "count", "sighting_of_ref", "observed_data_refs", "where_sighted_refs",

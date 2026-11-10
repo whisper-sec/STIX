@@ -1,6 +1,7 @@
 package security.whisper.javastix.meta;
 
 import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import security.whisper.javastix.bundle.BundleableObject;
@@ -9,6 +10,8 @@ import security.whisper.javastix.common.StixCustomProperties;
 import security.whisper.javastix.common.StixInstant;
 import security.whisper.javastix.datamarkings.GranularMarkingDm;
 import security.whisper.javastix.datamarkings.MarkingDefinitionDm;
+import security.whisper.javastix.json.StixParsers;
+import security.whisper.javastix.json.converters.dehydrated.MarkingDefinitionSetConverter;
 import security.whisper.javastix.redaction.Redactable;
 import security.whisper.javastix.sdo.types.ExternalReferenceType;
 import security.whisper.javastix.validation.constraints.defaulttypevalue.DefaultTypeValue;
@@ -20,7 +23,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import java.io.Serializable;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -97,6 +99,9 @@ public interface ExtensionDefinition extends Serializable, BundleableObject, Sti
     Set<ExternalReferenceType> getExternalReferences();
 
     @JsonProperty("object_marking_refs") @JsonInclude(value = NON_EMPTY)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonDeserialize(converter = MarkingDefinitionSetConverter.class)
     @JsonPropertyDescription("The list of marking-definition objects to be applied to this object.")
     Set<MarkingDefinitionDm> getObjectMarkingRefs();
 
@@ -115,10 +120,10 @@ public interface ExtensionDefinition extends Serializable, BundleableObject, Sti
     @Redactable
     Optional<String> getDescription();
 
-    @NotNull
+    @NotBlank
     @JsonProperty("schema")
-    @JsonPropertyDescription("The JSON schema for this extension.")
-    Map<String, Object> getSchema();
+    @JsonPropertyDescription("The normative definition of the extension, either as a URL or as plain text explaining the definition.")
+    String getSchema();
 
     @NotBlank
     @JsonProperty("version")
@@ -133,5 +138,26 @@ public interface ExtensionDefinition extends Serializable, BundleableObject, Sti
     @JsonProperty("extension_properties") @JsonInclude(value = NON_EMPTY)
     @JsonPropertyDescription("The list of properties that this extension adds to the objects it extends.")
     Set<String> getExtensionProperties();
+
+    /**
+     * Dictates whether the object is hydrated (fully populated) or only a reference holding its id.
+     * Read from input when present, never written.
+     */
+    @Value.Default
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    default boolean getHydrated() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Value.Lazy
+    @Value.Auxiliary
+    default String toJsonString() {
+        try {
+            return StixParsers.getJsonMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new IllegalStateException("Cannot process JSON", e);
+        }
+    }
 
 }

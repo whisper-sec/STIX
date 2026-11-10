@@ -34,7 +34,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @JsonSerialize(as = Process.class) @JsonDeserialize(builder = Process.Builder.class)
 @JsonInclude(value = NON_EMPTY, content= NON_EMPTY)
 @JsonTypeName("process")
-@JsonPropertyOrder({ "type", "extensions", "is_hidden", "pid", "name", "created", "cwd", "arguments", "command_line",
+@JsonPropertyOrder({ "type", "spec_version", "id", "extensions", "is_hidden", "pid", "name", "created", "cwd", "arguments", "command_line",
         "environment_variables", "opened_connection_refs", "creator_user_ref", "binary_ref", "parent_ref",
         "child_refs" })
 @BusinessRule(ifExp = "true", thenExp = "getExtensions().isEmpty() == false || isHidden().isPresent() == true || getPid().isPresent() == true || getName().isPresent() == true || getCreated().isPresent() == true || getCwd().isPresent() == true || getArguments().isEmpty() == false || getCommandLine().isPresent() == true || getEnvironmentVariables().isEmpty() == false || getOpenedConnectionRefs().isEmpty() == false || getCreatorUserRef().isPresent() == true || getBinaryRef().isPresent() == true || getParentRef().isPresent() == true || getChildRefs().isEmpty() == false", errorMessage = "A Process Object MUST contain at least one property (other than type) from this object (or one of its extensions).")

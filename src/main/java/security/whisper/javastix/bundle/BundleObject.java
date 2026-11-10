@@ -35,7 +35,7 @@ import java.util.Set;
 @JsonTypeName("bundle")
 @Value.Style(typeImmutable = "Bundle", validationMethod = Value.Style.ValidationMethod.NONE, additionalJsonAnnotations = {JsonTypeName.class}, depluralize = true)
 @JsonSerialize(as = Bundle.class) @JsonDeserialize(builder = Bundle.Builder.class)
-@JsonPropertyOrder({"type", "id", "spec_version", "objects"})
+@JsonPropertyOrder({"type", "id", "objects"})
 public interface BundleObject extends GenericValidation, Serializable, StixCustomProperties, Stix {
 
     @NotBlank
@@ -51,9 +51,20 @@ public interface BundleObject extends GenericValidation, Serializable, StixCusto
     @Pattern(regexp = "^[a-z][a-z-]+[a-z]--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
     String getId();
 
+    /**
+     * The STIX version of the bundle's content, as read from input.
+     * <p>
+     * STIX 2.0 put {@code spec_version} on the bundle; STIX 2.1 moved it onto every object and
+     * defines no {@code spec_version} on the bundle (section 8). It is therefore accepted on input,
+     * so 2.0-style bundles still parse, but never written: consumers such as the OASIS python-stix2
+     * library read a bundle that carries {@code spec_version} as STIX 2.0 content.
+     *
+     * @return the bundle-level version read from input, or {@code "2.1"} when it had none
+     */
     @NotBlank
-    @JsonProperty("spec_version")
-    @JsonPropertyDescription("The version of the STIX specification used to represent the content in this bundle.")
+    @Pattern(regexp = "^2\\.[01]$", message = "bundle spec_version must be \"2.0\" or \"2.1\"")
+    @JsonProperty(value = "spec_version", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonPropertyDescription("The version of the STIX specification used to represent the content in this bundle (STIX 2.0 only; read, never written).")
     @Value.Default
     default String getSpecVersion() {
         return StixSpecVersion.SPECVERSION;

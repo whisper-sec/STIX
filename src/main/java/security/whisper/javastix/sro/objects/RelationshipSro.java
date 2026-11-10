@@ -39,7 +39,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 @DefaultTypeValue(value = "relationship", groups = {DefaultValuesProcessor.class})
 @JsonTypeName("relationship")
 @JsonSerialize(as = Relationship.class) @JsonDeserialize(builder = Relationship.Builder.class)
-@JsonPropertyOrder({"type", "id", "created_by_ref", "created",
+@JsonPropertyOrder({"type", "spec_version", "id", "created_by_ref", "created",
         "modified", "revoked", "labels", "external_references",
         "object_marking_refs", "granular_markings", "relationship_type", "description",
         "source_ref", "target_ref"})
