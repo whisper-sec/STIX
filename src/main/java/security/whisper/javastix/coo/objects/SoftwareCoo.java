@@ -41,7 +41,7 @@ public interface SoftwareCoo extends CyberObservableObject {
     
     /**
      *  TODO The value for this property MUST be a CPE v2.3 entry from the official NVD CPE Dictionary.
-     *  regex pattern = "^cpe:2\\.3:[aho](?::(?:[a-zA-Z0-9!\"#$%&'()*+,\\\\-_.\/();<=>?@\\[\\]^`{|}~]|\\:)+){10}$"
+     *  regex pattern = "^cpe:2\\.3:[aho](?::(?:[a-zA-Z0-9!\"#$%&amp;'()*+,\\\\-_.\/();&lt;=&gt;?@\\[\\]^`{|}~]|\\:)+){10}$"
      *  Is not valid for the @Pattern annotation (invalid escape chars)
      *  Remove @Pattern(regexp="^cpe:2\\.3:[aho]") until working solution is provided
      */
