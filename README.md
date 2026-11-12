@@ -40,20 +40,20 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory:
 <dependency>
     <groupId>security.whisper</groupId>
     <artifactId>stix2.1</artifactId>
-    <version>1.4.2</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```gradle
-implementation 'security.whisper:stix2.1:1.3.8'
+implementation 'security.whisper:stix2.1:2.0.0'
 ```
 
 ### Gradle (Kotlin DSL)
 
 ```kotlin
-implementation("security.whisper:stix2.1:1.3.8")
+implementation("security.whisper:stix2.1:2.0.0")
 ```
 
 ### Your First STIX Object
@@ -277,7 +277,7 @@ This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICE
 
 ## 📊 Project Status
 
-- **Current Version**: 1.4.2 (Stable)
+- **Current Version**: 2.0.0 (Stable)
 - **STIX Version**: 2.1 (conformance measured against the OASIS samples and schemas; see [STIX_COMPLIANCE.md](STIX_COMPLIANCE.md))
 - **Java Compatibility**: 17, 21 (from 2.0.0; 1.4.x supports Java 11)
 - **Build Status**: ✅ Passing
@@ -305,10 +305,13 @@ This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICE
 
 See [CHANGELOG.md](CHANGELOG.md) for a detailed version history.
 
-### Latest Release: v1.4.2
-- **Security**: pins patched transitive dependencies - guava `33.4.8-jre` (CVE-2023-2976, CVE-2020-8908), json-smart `2.5.2` (CVE-2024-57699), and test-only commons-text `1.10.0` (CVE-2022-42889). No API or direct-dependency changes; drop-in upgrade from 1.4.1.
+### Latest Release: v2.0.0
+- **Breaking, STIX 2.1 wire conformance**: every object is written with `spec_version: "2.1"`, conformant STIX 2.1 content parses (a `spec_version` on an SDO or SRO was rejected as a custom property), and Note, Opinion and Grouping `object_refs` are written as identifiers. Bundles no longer carry `spec_version`. Output is read as STIX 2.1 by python-stix2 and validates with stix2-validator.
+- **Breaking, Java 17+**, plus a few API corrections (`ExtensionDefinitionObject.getSchema()` is a `String`, `LanguageContentObject.getObjectModified()` is optional). See [CHANGELOG.md](CHANGELOG.md) for the full list and the migration notes.
+- **Security**: jackson `2.18.11`, Spring `6.2.19`, guava `33.7.2-jre`.
 
 ### Previous Releases
+- **v1.4.2**: Pins patched transitive dependencies (guava, json-smart, commons-text)
 - **v1.4.1**: Dependency security updates (commons-lang3, json-path, groovy-all)
 - **v1.4.0**: TAXII 2.1 pull client (`TaxiiClient`) with cursor-based pagination and pluggable HTTP transport
 - **v1.3.8**: STIX 2.1 ThreatActor `threat_actor_types` support

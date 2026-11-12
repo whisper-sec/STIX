@@ -4,7 +4,7 @@ This guide walks you through installing the Whisper STIX 2.1 Java Library in you
 
 ## Prerequisites
 
-- **Java 8** or higher (Java 8, 11, 17, 21 are all supported)
+- **Java 17** or higher (Java 17 and 21 are supported from 2.0.0; the 1.4.x line supports Java 11)
 - **Maven 3.6+** or **Gradle 6+** for dependency management
 - An IDE such as IntelliJ IDEA, Eclipse, or VS Code (optional but recommended)
 
@@ -21,7 +21,7 @@ Add the following dependency to your `pom.xml`:
 <dependency>
     <groupId>security.whisper</groupId>
     <artifactId>stix2.1</artifactId>
-    <version>1.3.4</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -40,8 +40,8 @@ Add the following dependency to your `pom.xml`:
     <version>1.0.0</version>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -49,7 +49,7 @@ Add the following dependency to your `pom.xml`:
         <dependency>
             <groupId>security.whisper</groupId>
             <artifactId>stix2.1</artifactId>
-            <version>1.0.0</version>
+            <version>2.0.0</version>
         </dependency>
     </dependencies>
 </project>
@@ -61,7 +61,7 @@ Add the following to your `build.gradle`:
 
 ```gradle
 dependencies {
-    implementation 'security.whisper:stix2.1:1.3.4'
+    implementation 'security.whisper:stix2.1:2.0.0'
 }
 ```
 
@@ -81,7 +81,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'security.whisper:stix2.1:1.3.4'
+    implementation 'security.whisper:stix2.1:2.0.0'
 
     // Optional: Add logging
     implementation 'org.slf4j:slf4j-api:2.0.9'
@@ -92,8 +92,8 @@ dependencies {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 test {
@@ -139,7 +139,7 @@ The STIX library includes the following key dependencies:
 1. Open your project
 2. File → Project Structure → Libraries
 3. Click '+' → From Maven
-4. Search for `security.whisper:stix2.1:1.3.4`
+4. Search for `security.whisper:stix2.1:2.0.0`
 5. Click OK
 
 ### Eclipse
@@ -210,7 +210,7 @@ If you encounter dependency conflicts, particularly with Jackson or Guava:
 <dependency>
     <groupId>security.whisper</groupId>
     <artifactId>stix2.1</artifactId>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
     <exclusions>
         <exclusion>
             <groupId>com.google.guava</groupId>

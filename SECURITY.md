@@ -52,7 +52,7 @@ Regularly update the library to the latest version:
 <dependency>
     <groupId>security.whisper</groupId>
     <artifactId>stix2.1</artifactId>
-    <version>1.0.0</version> <!-- Use latest version -->
+    <version>2.0.0</version> <!-- Use the latest version -->
 </dependency>
 ```
 
