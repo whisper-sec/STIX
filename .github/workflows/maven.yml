@@ -14,6 +14,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+# The default token is read-only; only the dependency-graph job below asks for more.
+permissions:
+  contents: read
+
 jobs:
   build:
 
@@ -30,6 +34,24 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
+  # Uploads the resolved dependency graph so Dependabot alerts cover transitive
+  # dependencies. The submission API needs contents: write, which a pull request
+  # (and the repository's read-only default token) does not have, so this runs
+  # only on pushes to main, after the build has passed.
+  dependency-graph:
+    if: github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
     - name: Update dependency graph
       uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
